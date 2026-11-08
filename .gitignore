@@ -11,3 +11,6 @@ desktop.ini
 
 # Carpeta local para dejar fotos nuevas antes de procesarlas (no se sube)
 fotos-nuevas/
+
+.vercel
+.env*

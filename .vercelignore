@@ -1,0 +1,6 @@
+# Archivos que no se publican en Vercel
+ejemplo/
+fotos-nuevas/
+.vscode/
+README.md
+.env*
