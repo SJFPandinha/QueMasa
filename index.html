@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>¡Qué Masa! | Pizza casera lista para hornear — San Miguel de Tucumán</title>
+    <meta name="description" content="¡Qué Masa! — Pizzas caseras, focaccias y pizzetas listas para hornear. Ventas por mayor y menor en San Miguel de Tucumán. Pedí por WhatsApp.">
+    <meta name="theme-color" content="#6A0404">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="¡Qué Masa! | Pizza casera lista para hornear">
+    <meta property="og:description" content="Nosotros ponemos el sabor, vos ponés el horno. Pedí por WhatsApp.">
+    <meta property="og:image" content="assets/img/hero-pizza.webp">
+    <meta property="og:locale" content="es_AR">
+
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <link rel="apple-touch-icon" href="assets/img/favicon.png">
+
+    <!-- Google Fonts (como en Dina) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome (como en Dina) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <link rel="preload" as="image" href="assets/img/hero-pizza.webp" fetchpriority="high">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="header" id="header">
+        <nav class="nav contenedor" aria-label="Navegación principal">
+            <a href="#inicio" class="marca" aria-label="¡Qué Masa! — Ir al inicio">
+                <img class="marca__logo" src="assets/img/logo-quemasa-blanco.png" alt="¡Qué Masa! Pizza Takeaway" width="484" height="403">
+            </a>
+
+            <button class="nav__toggle" type="button" aria-controls="menu-principal" aria-expanded="false" aria-label="Abrir menú">
+                <span></span>
+            </button>
+
+            <ul class="nav__menu" id="menu-principal">
+                <li><a class="nav__link" href="#inicio">Inicio</a></li>
+                <li><a class="nav__link" href="#productos">Nuestros productos</a></li>
+                <li><a class="nav__link" href="menu.html">Menú</a></li>
+                <li><a class="nav__link" href="#nosotros">Sobre nosotros</a></li>
+                <li><a class="nav__link" href="#como-comprar">Cómo comprar</a></li>
+                <li><a class="nav__link" href="#contacto">Contacto</a></li>
+                <li>
+                    <a class="btn btn--blanco nav__cta" href="https://wa.me/5493816120182" target="_blank" rel="noopener"
+                       data-wa="¡Hola, Qué Masa! Quiero hacer un pedido.">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Hacé tu pedido
+                    </a>
+                </li>
+            </ul>
+            <div class="nav-overlay" aria-hidden="true"></div>
+        </nav>
+    </header>
+
+    <main id="contenido">
+
+        <!-- ==================== HERO ==================== -->
+        <section class="hero" id="inicio" aria-labelledby="hero-titulo">
+            <div class="hero__foto">
+                <!-- Foto de ejemplo: reemplazar assets/img/hero-pizza.webp -->
+                <img src="assets/img/hero-pizza.webp" alt="Porción de pizza recién horneada con queso derretido" fetchpriority="high" width="1600" height="1067">
+            </div>
+
+            <div class="contenedor">
+                <div class="hero__contenido">
+                    <span class="hero__etiqueta revelar"><i class="fa-solid fa-fire-flame-curved" aria-hidden="true"></i> Pizzas caseras · Listas para hornear</span>
+                    <h1 class="hero__titulo revelar" id="hero-titulo" style="--retraso:.1s">
+                        <img class="hero__logo" src="assets/img/logo-quemasa-blanco.png" alt="¡QUÉ MASA!" width="484" height="403">
+                    </h1>
+                    <p class="hero__subtitulo revelar" style="--retraso:.2s">Pizza casera, lista para hornear y disfrutar.</p>
+                    <p class="hero__texto revelar" style="--retraso:.3s">Nosotros ponemos el sabor, vos ponés el horno. Disfrutá de una pizza artesanal, elaborada con ingredientes de calidad y lista para compartir.</p>
+                    <div class="hero__acciones revelar" style="--retraso:.4s">
+                        <a class="btn btn--blanco" href="#productos">
+                            <i class="fa-solid fa-pizza-slice" aria-hidden="true"></i> Ver nuestros productos
+                        </a>
+                        <a class="btn btn--contorno" href="https://wa.me/5493816120182" target="_blank" rel="noopener"
+                           data-wa="¡Hola, Qué Masa! Quiero hacer un pedido de pizzas.">
+                            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Hacer un pedido
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== FRANJA DE BENEFICIOS ==================== -->
+        <div class="franja">
+            <div class="contenedor">
+                <ul class="franja__lista revelar">
+                    <li class="franja__item"><i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i> Elaboración casera</li>
+                    <li class="franja__item"><i class="fa-solid fa-wheat-awn" aria-hidden="true"></i> Ingredientes de calidad</li>
+                    <li class="franja__item"><i class="fa-solid fa-fire-burner" aria-hidden="true"></i> Listas para hornear</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ==================== SOBRE NOSOTROS ==================== -->
+        <section class="seccion nosotros" id="nosotros" aria-labelledby="nosotros-titulo">
+            <div class="contenedor nosotros__grid">
+                <div class="nosotros__fotos revelar">
+                    <div class="nosotros__foto-principal">
+                        <img src="assets/img/nosotros-horno.webp" alt="Pizza casera saliendo del horno" loading="lazy" width="900" height="990">
+                    </div>
+                    <div class="nosotros__foto-secundaria">
+                        <img src="assets/img/nosotros-ingredientes.webp" alt="Ingredientes seleccionados" loading="lazy" width="500" height="500">
+                    </div>
+                    <div class="nosotros__sello" aria-hidden="true"><div><span>100%</span>casera</div></div>
+                </div>
+
+                <div class="nosotros__contenido">
+                    <div class="titulo-seccion titulo-seccion--izq revelar">
+                        <span class="kicker">Sobre nosotros</span>
+                        <h2 class="titulo" id="nosotros-titulo">Hechas con amor, <span class="destacado">pensadas para disfrutar</span></h2>
+                    </div>
+                    <p class="nosotros__texto revelar">En ¡Qué Masa! creemos que una buena pizza empieza mucho antes de llegar al horno. Por eso elaboramos nuestras pizzas con dedicación, ingredientes de calidad y ese toque casero que hace la diferencia.</p>
+
+                    <ul class="caracteristicas">
+                        <li class="caracteristica revelar">
+                            <span class="caracteristica__icono"><i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i></span>
+                            <div>
+                                <h3>Elaboración casera</h3>
+                                <p>Cada pizza se prepara con dedicación y ese toque casero que hace la diferencia.</p>
+                            </div>
+                        </li>
+                        <li class="caracteristica revelar" style="--retraso:.1s">
+                            <span class="caracteristica__icono"><i class="fa-solid fa-wheat-awn" aria-hidden="true"></i></span>
+                            <div>
+                                <h3>Ingredientes de calidad</h3>
+                                <p>Una buena pizza empieza por lo que lleva adentro.</p>
+                            </div>
+                        </li>
+                        <li class="caracteristica revelar" style="--retraso:.2s">
+                            <span class="caracteristica__icono"><i class="fa-solid fa-fire-burner" aria-hidden="true"></i></span>
+                            <div>
+                                <h3>Listas para hornear</h3>
+                                <p>Nosotros ponemos el sabor, vos ponés el horno.</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <a class="btn btn--rojo revelar" href="#productos">Conocé nuestras variedades <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PRODUCTOS ==================== -->
+        <section class="seccion productos" id="productos" aria-labelledby="productos-titulo">
+            <div class="contenedor">
+                <div class="titulo-seccion revelar">
+                    <span class="kicker">Nuestros productos</span>
+                    <h2 class="titulo" id="productos-titulo">Descubrí nuestras <span class="destacado">variedades</span></h2>
+                    <p class="bajada">Elegí tu favorita y consultanos por WhatsApp: te contamos todo lo que necesitás saber para hacer tu pedido.</p>
+                </div>
+
+                <div class="productos__grid">
+                    <!--
+                        PLANTILLA DE TARJETA DE PRODUCTO
+                        Para agregar un producto nuevo, copiá un <article class="producto"> completo.
+                        Para cargar variedades y precios, completá la lista .producto__variedades así:
+                        <li class="variedad">
+                            <span class="variedad__nombre">Nombre de la variedad</span>
+                            <span class="variedad__puntos" aria-hidden="true"></span>
+                            <span class="variedad__precio">$0000</span>
+                        </li>
+                        Mientras la lista esté vacía, no se muestra.
+                    -->
+                    <article class="producto revelar">
+                        <div class="producto__media">
+                            <img src="assets/img/producto-pizza-casera.webp" alt="Pizza casera lista para hornear" loading="lazy" width="800" height="600">
+                            <span class="producto__etiqueta">Clásica</span>
+                        </div>
+                        <div class="producto__cuerpo">
+                            <h3 class="producto__nombre">Pizzas caseras</h3>
+                            <p class="producto__descripcion">Nuestras pizzas caseras, elaboradas con ingredientes de calidad y listas para hornear en tu casa.</p>
+                            <ul class="producto__variedades"></ul>
+                            <p class="producto__precio"><i class="fa-solid fa-tag" aria-hidden="true"></i> Consultá variedades y precios</p>
+                            <a class="producto__enlace" href="menu.html#pizzas">Ver pizzas en el menú <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                            <a class="btn btn--whatsapp btn--bloque" href="https://wa.me/5493816120182" target="_blank" rel="noopener"
+                               data-wa="¡Hola, Qué Masa! Quiero consultar por las pizzas caseras listas para hornear.">
+                                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Consultar por WhatsApp
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="producto revelar" style="--retraso:.1s">
+                        <div class="producto__media">
+                            <img src="assets/img/producto-focaccia.webp" alt="Focaccia casera lista para hornear" loading="lazy" width="800" height="600">
+                            <span class="producto__etiqueta">Focaccia</span>
+                        </div>
+                        <div class="producto__cuerpo">
+                            <h3 class="producto__nombre">Focaccias</h3>
+                            <p class="producto__descripcion">Focaccias caseras, con el mismo toque de ¡Qué Masa! y listas para hornear.</p>
+                            <ul class="producto__variedades"></ul>
+                            <p class="producto__precio"><i class="fa-solid fa-tag" aria-hidden="true"></i> Consultá variedades y precios</p>
+                            
+                            <a class="producto__enlace" href="menu.html#focaccias">Ver focaccias en el menú <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                            <a class="btn btn--whatsapp btn--bloque" href="https://wa.me/5493816120182" target="_blank" rel="noopener"
+                               data-wa="¡Hola, Qué Masa! Quiero consultar por las focaccias.">
+                                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Consultar por WhatsApp
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="producto revelar" style="--retraso:.2s">
+                        <div class="producto__media">
+                            <img src="assets/img/producto-pizzeta.webp" alt="Pizzeta casera lista para hornear" loading="lazy" width="800" height="600">
+                            <span class="producto__etiqueta">Pizzetas</span>
+                        </div>
+                        <div class="producto__cuerpo">
+                            <h3 class="producto__nombre">Pizzetas</h3>
+                            <p class="producto__descripcion">Pizzetas caseras, listas para hornear y compartir.</p>
+                            <ul class="producto__variedades"></ul>
+                            <p class="producto__precio"><i class="fa-solid fa-tag" aria-hidden="true"></i> Consultá variedades y precios</p>
+                            
+                            <a class="producto__enlace" href="menu.html#pizzetas">Ver pizzetas en el menú <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                            <a class="btn btn--whatsapp btn--bloque" href="https://wa.me/5493816120182" target="_blank" rel="noopener"
+                               data-wa="¡Hola, Qué Masa! Quiero consultar por las pizzetas.">
+                                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Consultar por WhatsApp
+                            </a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="productos__cta revelar">
+                    <a class="btn btn--rojo" href="menu.html">
+                        <i class="fa-solid fa-book-open" aria-hidden="true"></i> Ver el menú completo
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CÓMO COMPRAR ==================== -->
+        <section class="seccion pasos-seccion en-oscuro" id="como-comprar" aria-labelledby="pasos-titulo">
+            <div class="contenedor">
+                <div class="titulo-seccion revelar">
+                    <span class="kicker">Cómo comprar</span>
+                    <h2 class="titulo" id="pasos-titulo">Vos horneás, <span class="destacado">nosotros hacemos el resto</span></h2>
+                    <p class="bajada">Sin amasar, sin ensuciar la cocina y sin esperar. Te llevás una pizza casera lista para el horno: solo tenés que calentarlo y disfrutar.</p>
+                </div>
+
+                <ol class="pasos">
+                    <li class="paso revelar">
+                        <button class="paso__media" type="button" data-paso="0" data-titulo="Elegís tu pizza" data-detalle="Mirá nuestras pizzas caseras, pizzetas y focaccias, elegí tu favorita y escribinos por WhatsApp con tu pedido." aria-label="Ver paso 1: Elegís tu pizza">
+                            <img src="assets/img/paso-1-elegis.webp" alt="Variedad de pizzas para elegir" loading="lazy" width="500" height="500">
+                            <span class="paso__numero">1</span>
+                            <span class="paso__ver"><i class="fa-solid fa-eye" aria-hidden="true"></i> Ver</span>
+                        </button>
+                        <div class="paso__icono"><i class="fa-solid fa-hand-pointer" aria-hidden="true"></i></div>
+                        <h3>Elegís tu pizza</h3>
+                        <p>Mirá nuestras variedades y escribinos por WhatsApp con tu pedido.</p>
+                    </li>
+                    <li class="paso revelar" style="--retraso:.15s">
+                        <button class="paso__media" type="button" data-paso="1" data-titulo="La recibís lista para hornear" data-detalle="Tu pizza llega preparada, con todo el sabor casero de ¡Qué Masa!. Solo te queda llevarla al horno." aria-label="Ver paso 2: La recibís lista para hornear">
+                            <img src="assets/img/paso-2-recibis.webp" alt="Pizza lista para hornear" loading="lazy" width="500" height="500">
+                            <span class="paso__numero">2</span>
+                            <span class="paso__ver"><i class="fa-solid fa-eye" aria-hidden="true"></i> Ver</span>
+                        </button>
+                        <div class="paso__icono"><i class="fa-solid fa-box-open" aria-hidden="true"></i></div>
+                        <h3>La recibís lista para hornear</h3>
+                        <p>Tu pizza llega preparada, con todo el sabor casero de ¡Qué Masa!.</p>
+                    </li>
+                    <li class="paso revelar" style="--retraso:.3s">
+                        <button class="paso__media" type="button" data-paso="2" data-titulo="La horneás y disfrutás" data-detalle="Al horno, unos minutos y listo: pizza casera, recién hecha, para compartir." aria-label="Ver paso 3: La horneás y disfrutás">
+                            <img src="assets/img/paso-3-horneas.webp" alt="Pizza horneada con queso derretido" loading="lazy" width="500" height="500">
+                            <span class="paso__numero">3</span>
+                            <span class="paso__ver"><i class="fa-solid fa-eye" aria-hidden="true"></i> Ver</span>
+                        </button>
+                        <div class="paso__icono"><i class="fa-solid fa-fire-burner" aria-hidden="true"></i></div>
+                        <h3>La horneás y disfrutás</h3>
+                        <p>Al horno, unos minutos y listo: pizza casera para compartir.</p>
+                    </li>
+                </ol>
+
+                <div class="pasos-seccion__cta revelar">
+                    <a class="btn btn--blanco" href="https://wa.me/5493816120182" target="_blank" rel="noopener"
+                       data-wa="¡Hola, Qué Masa! Quiero elegir mi pizza y hacer un pedido.">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Quiero mi pizza
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== MAYORISTA / MINORISTA ==================== -->
+        <section class="seccion banda en-oscuro" id="mayorista" aria-labelledby="mayorista-titulo">
+            <div class="banda__fondo">
+                <img src="assets/img/banda-mayorista.webp" alt="" loading="lazy" width="1600" height="800">
+            </div>
+            <div class="contenedor mayorista">
+                <div class="revelar">
+                    <div class="titulo-seccion titulo-seccion--izq">
+                        <span class="kicker">Para casa y para tu negocio</span>
+                        <h2 class="titulo" id="mayorista-titulo">Ventas por <span class="destacado">mayor y menor</span></h2>
+                        <p class="bajada">Ya sea para disfrutar en casa o para tu negocio, en ¡Qué Masa! tenemos una opción para vos.</p>
+                    </div>
+                    <div class="acciones">
+                        <a class="btn btn--blanco" href="precios.html">
+                            <i class="fa-solid fa-tags" aria-hidden="true"></i> Ver lista de precios
+                        </a>
+                        <a class="btn btn--contorno" href="https://wa.me/5493816120182" target="_blank" rel="noopener"
+                           data-wa="¡Hola, Qué Masa! Quiero consultar las condiciones de compra por mayor y menor.">
+                            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Consultar condiciones
+                        </a>
+                    </div>
+                </div>
+
+                <ul class="mayorista__opciones">
+                    <li class="revelar">
+                        <a class="opcion" href="precios.html#menor">
+                            <i class="fa-solid fa-house-chimney" aria-hidden="true"></i>
+                            <div>
+                                <h3>Por menor</h3>
+                                <p>Para disfrutar en casa, con tu familia o amigos.</p>
+                                <span class="opcion__ver">Ver precios por menor <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="revelar" style="--retraso:.15s">
+                        <a class="opcion" href="precios.html#mayor">
+                            <i class="fa-solid fa-store" aria-hidden="true"></i>
+                            <div>
+                                <h3>Por mayor</h3>
+                                <p>Para tu negocio. Consultanos las condiciones.</p>
+                                <span class="opcion__ver">Ver precios por mayor <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ==================== GALERÍA ==================== -->
+        <section class="seccion galeria" id="galeria" aria-labelledby="galeria-titulo">
+            <div class="contenedor">
+                <div class="titulo-seccion revelar">
+                    <span class="kicker">Galería</span>
+                    <h2 class="titulo" id="galeria-titulo">Así se hace <span class="destacado">¡Qué Masa!</span></h2>
+                    <p class="bajada">De la masa al horno: nuestros productos y el proceso de elaboración.</p>
+                </div>
+
+                <!-- Fotos de ejemplo: reemplazar los archivos assets/img/galeria-*.webp por fotos propias -->
+                <div class="galeria__grid">
+                    <button class="galeria__item galeria__item--alto revelar" type="button" data-leyenda="Pizzas terminadas">
+                        <img src="assets/img/galeria-1-terminada.webp" alt="Pizza terminada con queso derretido" loading="lazy" width="900" height="1200">
+                        <span class="galeria__leyenda"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i> Pizzas terminadas</span>
+                    </button>
+                    <button class="galeria__item galeria__item--ancho revelar" type="button" data-leyenda="Preparación de las masas">
+                        <img src="assets/img/galeria-2-masas.webp" alt="Preparación de las masas" loading="lazy" width="900" height="600">
+                        <span class="galeria__leyenda"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i> Preparación de las masas</span>
+                    </button>
+                    <button class="galeria__item revelar" type="button" data-leyenda="Ingredientes">
+                        <img src="assets/img/galeria-3-ingredientes.webp" alt="Ingredientes" loading="lazy" width="700" height="500">
+                        <span class="galeria__leyenda"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i> Ingredientes</span>
+                    </button>
+                    <button class="galeria__item revelar" type="button" data-leyenda="Listas para hornear">
+                        <img src="assets/img/galeria-4-lista-para-hornear.webp" alt="Pizzas listas para hornear" loading="lazy" width="700" height="500">
+                        <span class="galeria__leyenda"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i> Listas para hornear</span>
+                    </button>
+                    <button class="galeria__item galeria__item--alto revelar" type="button" data-leyenda="Presentación de los productos">
+                        <img src="assets/img/galeria-5-presentacion.webp" alt="Presentación de los productos" loading="lazy" width="900" height="1200">
+                        <span class="galeria__leyenda"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i> Presentación</span>
+                    </button>
+                    <button class="galeria__item revelar" type="button" data-leyenda="Pizzas terminadas">
+                        <img src="assets/img/galeria-6-terminada.webp" alt="Pizza terminada" loading="lazy" width="700" height="500">
+                        <span class="galeria__leyenda"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i> Pizzas terminadas</span>
+                    </button>
+                    <button class="galeria__item galeria__item--ancho revelar" type="button" data-leyenda="Presentación de los productos">
+                        <img src="assets/img/galeria-7-presentacion.webp" alt="Presentación de una pizza" loading="lazy" width="900" height="600">
+                        <span class="galeria__leyenda"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i> Presentación</span>
+                    </button>
+                    <button class="galeria__item revelar" type="button" data-leyenda="Pizzas terminadas">
+                        <img src="assets/img/galeria-8-terminada.webp" alt="Porciones de pizza" loading="lazy" width="700" height="500">
+                        <span class="galeria__leyenda"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i> Pizzas terminadas</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CONTACTO ==================== -->
+        <section class="seccion contacto" id="contacto" aria-labelledby="contacto-titulo">
+            <div class="contenedor">
+                <div class="titulo-seccion revelar">
+                    <span class="kicker">Contacto</span>
+                    <h2 class="titulo" id="contacto-titulo">¿Tenés ganas de <span class="destacado">una buena pizza?</span></h2>
+                    <p class="bajada">Escaneá el código para escribirnos o seguirnos, y encontranos en Alsina 948.</p>
+                </div>
+
+                <!-- Códigos QR (imágenes fijas en assets/img/qr-*.svg) -->
+                <div class="qr-bloque">
+                    <div class="qr-bloque__intro revelar">
+                        <span class="qr-bloque__icono"><i class="fa-solid fa-qrcode" aria-hidden="true"></i></span>
+                        <div>
+                            <h3 class="qr-bloque__titulo">Escaneá y escribinos</h3>
+                            <p class="qr-bloque__texto">Apuntá la cámara de tu celular al código y entrá directo a nuestro WhatsApp o a nuestro Instagram.</p>
+                        </div>
+                    </div>
+
+                    <div class="qr-tarjetas">
+                        <figure class="qr-tarjeta revelar">
+                            <div class="qr-tarjeta__codigo">
+                                <img src="assets/img/qr-whatsapp.svg" alt="Código QR para escribir a ¡Qué Masa! por WhatsApp al 381 612-0182" width="220" height="220" loading="lazy">
+                                <span class="qr-tarjeta__sello" aria-hidden="true"><i class="fa-brands fa-whatsapp"></i></span>
+                            </div>
+                            <figcaption>
+                                <span class="qr-tarjeta__red">WhatsApp</span>
+                                <span class="qr-tarjeta__dato">381 612-0182</span>
+                                <a class="qr-tarjeta__enlace" href="https://wa.me/5493816120182" target="_blank" rel="noopener"
+                                   data-wa="¡Hola, Qué Masa! Quiero hacer un pedido.">o tocá acá para abrirlo <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                            </figcaption>
+                        </figure>
+
+                        <figure class="qr-tarjeta revelar" style="--retraso:.12s">
+                            <div class="qr-tarjeta__codigo">
+                                <img src="assets/img/qr-instagram.svg" alt="Código QR para visitar el Instagram de ¡Qué Masa! (@quemasa.takeawayy)" width="220" height="220" loading="lazy">
+                                <span class="qr-tarjeta__sello" aria-hidden="true"><i class="fa-brands fa-instagram"></i></span>
+                            </div>
+                            <figcaption>
+                                <span class="qr-tarjeta__red">Instagram</span>
+                                <span class="qr-tarjeta__dato">@quemasa.takeawayy</span>
+                                <a class="qr-tarjeta__enlace" href="https://www.instagram.com/quemasa.takeawayy/" target="_blank" rel="noopener">o tocá acá para abrirlo <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <!-- Ubicación: mapa grande con la dirección -->
+                <div class="ubicacion revelar">
+                    <div class="ubicacion__mapa">
+                        <iframe title="Ubicación de ¡Qué Masa! en Google Maps — Alsina 948, San Miguel de Tucumán"
+                                src="https://maps.google.com/maps?q=Alsina%20948%2C%20San%20Miguel%20de%20Tucum%C3%A1n%2C%20Argentina&amp;z=16&amp;output=embed"
+                                loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+                    </div>
+
+                    <div class="ubicacion__info">
+                        <span class="ubicacion__icono"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></span>
+                        <h3 class="ubicacion__titulo">Dónde estamos</h3>
+                        <address class="ubicacion__direccion">
+                            <strong>Alsina 948</strong>
+                            San Miguel de Tucumán, Tucumán
+                        </address>
+                        <div class="ubicacion__acciones">
+                            <a class="btn btn--rojo" href="https://www.google.com/maps/dir/?api=1&amp;destination=Alsina%20948%2C%20San%20Miguel%20de%20Tucum%C3%A1n%2C%20Tucum%C3%A1n%2C%20Argentina" target="_blank" rel="noopener">
+                                <i class="fa-solid fa-diamond-turn-right" aria-hidden="true"></i> Cómo llegar
+                            </a>
+                            <a class="btn btn--contorno-rojo" href="https://www.google.com/maps/search/?api=1&amp;query=Alsina%20948%2C%20San%20Miguel%20de%20Tucum%C3%A1n%2C%20Tucum%C3%A1n%2C%20Argentina" target="_blank" rel="noopener">
+                                <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> Ver en Google Maps
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="contenedor footer__grid">
+            <div class="footer__marca">
+                <a href="#inicio" class="marca" aria-label="¡Qué Masa! — Volver al inicio">
+                    <img class="marca__logo" src="assets/img/logo-quemasa-blanco.png" alt="¡Qué Masa! Pizza Takeaway" width="484" height="403" loading="lazy">
+                </a>
+                <p class="footer__descripcion">Pizza casera, lista para hornear y disfrutar. Nosotros ponemos el sabor, vos ponés el horno.</p>
+                <div class="redes">
+                    <a href="https://www.instagram.com/quemasa.takeawayy/" target="_blank" rel="noopener" aria-label="Instagram de ¡Qué Masa!"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://wa.me/5493816120182" target="_blank" rel="noopener" aria-label="WhatsApp de ¡Qué Masa!" data-wa="¡Hola, Qué Masa! Tengo una consulta."><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <nav aria-label="Navegación del pie de página">
+                <h3>Navegación</h3>
+                <ul class="footer__links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#productos">Nuestros productos</a></li>
+                    <li><a href="menu.html">Menú</a></li>
+                    <li><a href="precios.html">Precios por mayor y menor</a></li>
+                    <li><a href="#nosotros">Sobre nosotros</a></li>
+                    <li><a href="#como-comprar">Cómo comprar</a></li>
+                    <li><a href="#galeria">Galería</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <div>
+                <h3>Contacto</h3>
+                <ul class="footer__contacto">
+                    <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                        <a href="https://www.google.com/maps/search/?api=1&amp;query=Alsina%20948%2C%20San%20Miguel%20de%20Tucum%C3%A1n%2C%20Tucum%C3%A1n%2C%20Argentina" target="_blank" rel="noopener">Alsina 948, San Miguel de Tucumán</a></li>
+                    <li><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                        <a href="https://wa.me/5493816120182" target="_blank" rel="noopener" data-wa="¡Hola, Qué Masa! Tengo una consulta.">381 612-0182</a></li>
+                    <li><i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                        <a href="https://www.instagram.com/quemasa.takeawayy/" target="_blank" rel="noopener">@quemasa.takeawayy</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer__base">
+            <div class="contenedor">
+                <p>© <span id="anio">2026</span> ¡Qué Masa! Todos los derechos reservados.</p>
+                <p>Pizza casera · San Miguel de Tucumán</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp flotante -->
+    <a class="whatsapp-flotante" href="https://wa.me/5493816120182" target="_blank" rel="noopener"
+       data-wa="¡Hola, Qué Masa! Quiero hacer un pedido." aria-label="Hacer un pedido por WhatsApp">
+        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+    </a>
+
+    <!-- Ficha deslizable de "Cómo comprar" (se abre al tocar la foto de un paso) -->
+    <div class="ficha" id="hoja-pasos" role="dialog" aria-modal="true" aria-labelledby="hoja-pasos-titulo" hidden>
+        <div class="ficha__fondo" aria-hidden="true"></div>
+        <section class="ficha__panel">
+            <div class="ficha__agarre" aria-hidden="true"></div>
+            <button class="ficha__cerrar" type="button" aria-label="Cerrar"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+
+            <div class="ficha__media">
+                <img id="hoja-pasos-img" alt="" width="500" height="500" draggable="false">
+                <div class="historias" id="hoja-pasos-progreso" aria-hidden="true"></div>
+                <span class="vitrina__etiqueta" id="hoja-pasos-numero"></span>
+                <button class="ficha__zona ficha__zona--prev" type="button" aria-label="Paso anterior"></button>
+                <button class="ficha__zona ficha__zona--next" type="button" aria-label="Paso siguiente"></button>
+            </div>
+
+            <div class="ficha__cuerpo">
+                <span class="vitrina__categoria"><i class="fa-solid fa-pizza-slice" aria-hidden="true"></i> Cómo comprar</span>
+                <h2 class="vitrina__nombre" id="hoja-pasos-titulo"></h2>
+                <p class="vitrina__descripcion" id="hoja-pasos-texto"></p>
+
+                <div class="ficha__acciones">
+                    <a class="btn btn--whatsapp" href="https://wa.me/5493816120182" target="_blank" rel="noopener"
+                       data-wa="¡Hola, Qué Masa! Quiero hacer un pedido.">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Hacer un pedido
+                    </a>
+                    <a class="btn btn--contorno-rojo" href="menu.html">
+                        <i class="fa-solid fa-book-open" aria-hidden="true"></i> Ver el menú
+                    </a>
+                </div>
+                <p class="ficha__ayuda">
+                    <span id="hoja-pasos-contador"></span> ·
+                    Tocá los costados de la foto para pasar de paso · Deslizá hacia abajo para cerrar
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Lightbox de la galería -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Imagen ampliada" hidden>
+        <button class="lightbox__btn lightbox__cerrar" type="button" aria-label="Cerrar"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        <button class="lightbox__btn lightbox__prev" type="button" aria-label="Imagen anterior"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+        <figure class="lightbox__figura">
+            <img class="lightbox__img" alt="">
+            <figcaption class="lightbox__leyenda"></figcaption>
+        </figure>
+        <button class="lightbox__btn lightbox__next" type="button" aria-label="Imagen siguiente"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+    </div>
+
+    <script src="js/main.js" defer></script>
+</body>
+</html>

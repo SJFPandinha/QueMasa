@@ -1,0 +1,10 @@
+# Capturas de referencia de la plantilla Dina (material de terceros, no lo usa el sitio)
+ejemplo/
+
+# Archivos temporales y del sistema
+.playwright-mcp/
+node_modules/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log

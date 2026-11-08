@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Menú | ¡Qué Masa! — Pizzas caseras, focaccias y pizzetas</title>
+    <meta name="description" content="Menú de ¡Qué Masa!: pizzas caseras, pizzetas y focaccias listas para hornear. Mirá cada variedad con sus ingredientes y pedí por WhatsApp.">
+    <meta name="theme-color" content="#6A0404">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Menú | ¡Qué Masa!">
+    <meta property="og:description" content="Pizzas caseras, focaccias y pizzetas listas para hornear. Mirá los ingredientes de cada una.">
+    <meta property="og:image" content="assets/img/hero-pizza.webp">
+    <meta property="og:locale" content="es_AR">
+
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <link rel="apple-touch-icon" href="assets/img/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="pagina-menu">
+    <a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="header" id="header">
+        <nav class="nav contenedor" aria-label="Navegación principal">
+            <a href="index.html" class="marca" aria-label="¡Qué Masa! — Ir al inicio">
+                <img class="marca__logo" src="assets/img/logo-quemasa-blanco.png" alt="¡Qué Masa! Pizza Takeaway" width="484" height="403">
+            </a>
+
+            <button class="nav__toggle" type="button" aria-controls="menu-principal" aria-expanded="false" aria-label="Abrir menú">
+                <span></span>
+            </button>
+
+            <ul class="nav__menu" id="menu-principal">
+                <li><a class="nav__link" href="index.html#inicio">Inicio</a></li>
+                <li><a class="nav__link" href="index.html#productos">Nuestros productos</a></li>
+                <li><a class="nav__link is-active" href="menu.html" aria-current="page">Menú</a></li>
+                <li><a class="nav__link" href="index.html#nosotros">Sobre nosotros</a></li>
+                <li><a class="nav__link" href="index.html#como-comprar">Cómo comprar</a></li>
+                <li><a class="nav__link" href="index.html#contacto">Contacto</a></li>
+                <li>
+                    <a class="btn btn--blanco nav__cta" href="https://wa.me/5493816120182" target="_blank" rel="noopener"
+                       data-wa="¡Hola, Qué Masa! Vi el menú y quiero hacer un pedido.">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Hacé tu pedido
+                    </a>
+                </li>
+            </ul>
+            <div class="nav-overlay" aria-hidden="true"></div>
+        </nav>
+    </header>
+
+    <main id="contenido">
+
+        <!-- ==================== ENCABEZADO DE PÁGINA ==================== -->
+        <section class="pagina-hero" aria-labelledby="menu-titulo">
+            <div class="pagina-hero__foto">
+                <img src="assets/img/banda-mayorista.webp" alt="" width="1600" height="800" fetchpriority="high">
+            </div>
+            <div class="contenedor pagina-hero__contenido">
+                <nav class="migas" aria-label="Ruta de navegación">
+                    <ol>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li aria-current="page">Menú</li>
+                    </ol>
+                </nav>
+                <h1 class="pagina-hero__titulo" id="menu-titulo">Nuestro menú</h1>
+                <p class="pagina-hero__texto">Pizzas, pizzetas y focaccias caseras, listas para hornear.</p>
+            </div>
+        </section>
+
+        <!-- ==================== CARTA INTERACTIVA ==================== -->
+        <section class="seccion carta" id="carta" aria-labelledby="carta-titulo">
+            <div class="contenedor">
+                <p class="aviso-ejemplo" id="aviso-ejemplo" hidden>
+                    <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                    <span><strong>Fotos de referencia:</strong> las imágenes son ilustrativas y pronto se reemplazarán por fotos de nuestras pizzas. Los precios están a definir.</span>
+                </p>
+
+                <div class="titulo-seccion revelar">
+                    <span class="kicker">La carta</span>
+                    <h2 class="titulo" id="carta-titulo">Elegí tu <span class="destacado">variedad</span></h2>
+                </div>
+
+                <!-- Filtros -->
+                <div class="carta__controles revelar">
+                    <div class="filtros" role="group" aria-label="Filtrar por categoría" id="filtros"></div>
+                    <label class="buscador">
+                        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                        <span class="visualmente-oculto">Buscar por nombre o ingrediente</span>
+                        <input type="search" id="buscador" placeholder="Buscar por nombre o ingrediente…" autocomplete="off">
+                    </label>
+                </div>
+
+                <!-- Carrusel: variedad seleccionada con foto grande e ingredientes -->
+                <article class="vitrina" id="vitrina" aria-roledescription="carrusel" aria-label="Variedades del menú" aria-live="polite">
+                    <div class="vitrina__media">
+                        <button class="vitrina__foto" type="button" id="vitrina-foto" aria-label="Ampliar foto (mantené presionado para ver la ficha completa)">
+                            <img id="vitrina-img" alt="" width="1000" height="750" draggable="false">
+                            <span class="vitrina__zoom"><i class="fa-solid fa-hand-pointer" aria-hidden="true"></i> Mantené presionado</span>
+                        </button>
+                        <div class="historias" id="vitrina-progreso" aria-hidden="true"></div>
+                        <span class="vitrina__etiqueta" id="vitrina-etiqueta" hidden></span>
+                        <button class="vitrina__flecha vitrina__flecha--prev" type="button" id="vitrina-prev" aria-label="Variedad anterior"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+                        <button class="vitrina__flecha vitrina__flecha--next" type="button" id="vitrina-next" aria-label="Variedad siguiente"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+                    </div>
+
+                    <div class="vitrina__info">
+                        <span class="vitrina__categoria" id="vitrina-categoria"></span>
+                        <h3 class="vitrina__nombre" id="vitrina-nombre"></h3>
+                        <p class="vitrina__descripcion" id="vitrina-descripcion"></p>
+
+                        <h4 class="vitrina__subtitulo"><i class="fa-solid fa-list-check" aria-hidden="true"></i> Ingredientes</h4>
+                        <ul class="ingredientes" id="vitrina-ingredientes"></ul>
+                        <p class="vitrina__nota" id="vitrina-nota" hidden><i class="fa-solid fa-hourglass-half" aria-hidden="true"></i> Lista completa de ingredientes a confirmar.</p>
+
+                        <div class="vitrina__pie">
+                            <p class="vitrina__precio" id="vitrina-precio"></p>
+                            <a class="btn btn--whatsapp" id="vitrina-pedir" href="https://wa.me/5493816120182" target="_blank" rel="noopener">
+                                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Pedir esta variedad
+                            </a>
+                        </div>
+                        <div class="vitrina__extra">
+                            <p class="vitrina__contador" id="vitrina-contador"></p>
+                            <button class="vitrina__ver-ficha" type="button" id="vitrina-ver-ficha">
+                                <i class="fa-solid fa-up-long" aria-hidden="true"></i> Ver ficha completa
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <p class="carta__vacio" id="carta-vacio" hidden>
+                    <i class="fa-regular fa-face-frown" aria-hidden="true"></i>
+                    No encontramos variedades con esa búsqueda. Probá con otro ingrediente.
+                </p>
+
+                <noscript>
+                    <p class="carta__vacio">Para ver el menú interactivo necesitás tener JavaScript activado. También podés consultarnos por WhatsApp al 381 612-0182.</p>
+                </noscript>
+            </div>
+        </section>
+
+        <!-- ==================== INGREDIENTES DE CADA VARIEDAD ==================== -->
+        <section class="seccion tabla-ingredientes" id="ingredientes" aria-labelledby="ingredientes-titulo">
+            <div class="contenedor">
+                <div class="titulo-seccion revelar">
+                    <span class="kicker">Qué lleva cada una</span>
+                    <h2 class="titulo" id="ingredientes-titulo">Ingredientes de <span class="destacado">cada variedad</span></h2>
+                    <p class="bajada">Los ingredientes de cada variedad, a la vista y fáciles de leer. Tocá una variedad para verla en grande.</p>
+                </div>
+
+                <div id="lista-ingredientes"></div>
+            </div>
+        </section>
+
+        <!-- ==================== CTA ==================== -->
+        <section class="seccion menu-cta en-oscuro" aria-labelledby="cta-titulo">
+            <div class="contenedor menu-cta__contenido revelar">
+                <div class="titulo-seccion">
+                    <span class="kicker">¿Ya elegiste?</span>
+                    <h2 class="titulo" id="cta-titulo">Vos horneás, <span class="destacado">nosotros hacemos el resto</span></h2>
+                    <p class="bajada">Escribinos por WhatsApp con tu pedido y te respondemos a la brevedad.</p>
+                </div>
+                <div class="menu-cta__acciones">
+                    <a class="btn btn--blanco" href="https://wa.me/5493816120182" target="_blank" rel="noopener"
+                       data-wa="¡Hola, Qué Masa! Vi el menú y quiero hacer un pedido.">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Hacer un pedido
+                    </a>
+                    <a class="btn btn--contorno" href="precios.html">Precios por mayor y menor</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="contenedor footer__grid">
+            <div class="footer__marca">
+                <a href="index.html" class="marca" aria-label="¡Qué Masa! — Volver al inicio">
+                    <img class="marca__logo" src="assets/img/logo-quemasa-blanco.png" alt="¡Qué Masa! Pizza Takeaway" width="484" height="403" loading="lazy">
+                </a>
+                <p class="footer__descripcion">Pizza casera, lista para hornear y disfrutar. Nosotros ponemos el sabor, vos ponés el horno.</p>
+                <div class="redes">
+                    <a href="https://www.instagram.com/quemasa.takeawayy/" target="_blank" rel="noopener" aria-label="Instagram de ¡Qué Masa!"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://wa.me/5493816120182" target="_blank" rel="noopener" aria-label="WhatsApp de ¡Qué Masa!" data-wa="¡Hola, Qué Masa! Tengo una consulta."><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <nav aria-label="Navegación del pie de página">
+                <h3>Navegación</h3>
+                <ul class="footer__links">
+                    <li><a href="index.html#inicio">Inicio</a></li>
+                    <li><a href="index.html#productos">Nuestros productos</a></li>
+                    <li><a href="menu.html">Menú</a></li>
+                    <li><a href="precios.html">Precios por mayor y menor</a></li>
+                    <li><a href="index.html#nosotros">Sobre nosotros</a></li>
+                    <li><a href="index.html#como-comprar">Cómo comprar</a></li>
+                    <li><a href="index.html#galeria">Galería</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <div>
+                <h3>Contacto</h3>
+                <ul class="footer__contacto">
+                    <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                        <a href="https://www.google.com/maps/search/?api=1&amp;query=Alsina%20948%2C%20San%20Miguel%20de%20Tucum%C3%A1n%2C%20Tucum%C3%A1n%2C%20Argentina" target="_blank" rel="noopener">Alsina 948, San Miguel de Tucumán</a></li>
+                    <li><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                        <a href="https://wa.me/5493816120182" target="_blank" rel="noopener" data-wa="¡Hola, Qué Masa! Tengo una consulta.">381 612-0182</a></li>
+                    <li><i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                        <a href="https://www.instagram.com/quemasa.takeawayy/" target="_blank" rel="noopener">@quemasa.takeawayy</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer__base">
+            <div class="contenedor">
+                <p>© <span id="anio">2026</span> ¡Qué Masa! Todos los derechos reservados.</p>
+                <p>Pizza casera · San Miguel de Tucumán</p>
+            </div>
+        </div>
+    </footer>
+
+    <a class="whatsapp-flotante" href="https://wa.me/5493816120182" target="_blank" rel="noopener"
+       data-wa="¡Hola, Qué Masa! Vi el menú y quiero hacer un pedido." aria-label="Hacer un pedido por WhatsApp">
+        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+    </a>
+
+    <!-- Ficha deslizable de la variedad (se abre manteniendo presionada la foto del carrusel) -->
+    <div class="ficha" id="ficha" role="dialog" aria-modal="true" aria-labelledby="ficha-nombre" hidden>
+        <div class="ficha__fondo" aria-hidden="true"></div>
+        <section class="ficha__panel" id="ficha-panel">
+            <div class="ficha__agarre" aria-hidden="true"></div>
+            <button class="ficha__cerrar" type="button" id="ficha-cerrar" aria-label="Cerrar ficha"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+
+            <div class="ficha__media" id="ficha-media">
+                <img id="ficha-img" alt="" width="1000" height="750" draggable="false">
+                <div class="historias historias--ficha" id="ficha-progreso" aria-hidden="true"></div>
+                <span class="vitrina__etiqueta" id="ficha-etiqueta" hidden></span>
+                <button class="ficha__zona ficha__zona--prev" type="button" id="ficha-prev" aria-label="Variedad anterior"></button>
+                <button class="ficha__zona ficha__zona--next" type="button" id="ficha-next" aria-label="Variedad siguiente"></button>
+            </div>
+
+            <div class="ficha__cuerpo">
+                <span class="vitrina__categoria" id="ficha-categoria"></span>
+                <h2 class="vitrina__nombre" id="ficha-nombre"></h2>
+                <p class="vitrina__descripcion" id="ficha-descripcion"></p>
+
+                <h3 class="vitrina__subtitulo"><i class="fa-solid fa-list-check" aria-hidden="true"></i> Ingredientes</h3>
+                <ul class="ingredientes" id="ficha-ingredientes"></ul>
+                <p class="vitrina__nota" id="ficha-nota" hidden><i class="fa-solid fa-hourglass-half" aria-hidden="true"></i> Lista completa de ingredientes a confirmar.</p>
+
+                <div class="vitrina__pie">
+                    <p class="vitrina__precio" id="ficha-precio"></p>
+                    <a class="btn btn--whatsapp" id="ficha-pedir" href="https://wa.me/5493816120182" target="_blank" rel="noopener">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Pedir esta variedad
+                    </a>
+                </div>
+                <p class="ficha__ayuda">
+                    <span id="ficha-contador"></span> ·
+                    Tocá los costados de la foto para pasar de variedad · Deslizá hacia abajo para cerrar
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Visor de fotos -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Imagen ampliada" hidden>
+        <button class="lightbox__btn lightbox__cerrar" type="button" aria-label="Cerrar"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        <button class="lightbox__btn lightbox__prev" type="button" aria-label="Imagen anterior"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+        <figure class="lightbox__figura">
+            <img class="lightbox__img" alt="">
+            <figcaption class="lightbox__leyenda"></figcaption>
+        </figure>
+        <button class="lightbox__btn lightbox__next" type="button" aria-label="Imagen siguiente"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+    </div>
+
+    <script src="js/main.js" defer></script>
+    <script src="js/menu-datos.js" defer></script>
+    <script src="js/menu.js" defer></script>
+</body>
+</html>
