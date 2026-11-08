@@ -70,7 +70,7 @@
                     </ol>
                 </nav>
                 <h1 class="pagina-hero__titulo" id="menu-titulo">Nuestro menú</h1>
-                <p class="pagina-hero__texto">Pizzas, pizzetas y focaccias caseras, listas para hornear.</p>
+                <p class="pagina-hero__texto">Pizzas, pizzetas y focaccias caseras, listas para hornear. Y si no te decidís, pedila <a href="#mitad-y-mitad">mitad y mitad</a>.</p>
             </div>
         </section>
 
@@ -119,6 +119,12 @@
                         <ul class="ingredientes" id="vitrina-ingredientes"></ul>
                         <p class="vitrina__nota" id="vitrina-nota" hidden><i class="fa-solid fa-hourglass-half" aria-hidden="true"></i> Lista completa de ingredientes a confirmar.</p>
 
+                        <a class="vitrina__mitades" id="vitrina-mitades" href="#mitad-y-mitad" hidden>
+                            <span class="vitrina__mitades-icono" aria-hidden="true"></span>
+                            <span><strong>También mitad y mitad.</strong> Combinala con otro sabor en la misma pizza.</span>
+                            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+
                         <div class="vitrina__pie">
                             <p class="vitrina__precio" id="vitrina-precio"></p>
                             <a class="btn btn--whatsapp" id="vitrina-pedir" href="https://wa.me/5493816120182" target="_blank" rel="noopener">
@@ -142,6 +148,50 @@
                 <noscript>
                     <p class="carta__vacio">Para ver el menú interactivo necesitás tener JavaScript activado. También podés consultarnos por WhatsApp al 381 612-0182.</p>
                 </noscript>
+            </div>
+        </section>
+
+        <!-- ==================== MITAD Y MITAD ==================== -->
+        <!-- Se arma desde js/mitades.js con las categorías que tienen "mitades: true" en js/menu-datos.js -->
+        <section class="seccion mitades en-oscuro" id="mitad-y-mitad" aria-labelledby="mitades-titulo" hidden>
+            <div class="contenedor mitades__grid">
+                <div class="mitades__visual revelar">
+                    <div class="mitades__pizza" aria-hidden="true">
+                        <img class="mitades__img mitades__img--izq" id="mitades-img-1" alt="" width="1000" height="750">
+                        <img class="mitades__img mitades__img--der" id="mitades-img-2" alt="" width="1000" height="750">
+                    </div>
+                    <div class="mitades__nombres" aria-hidden="true">
+                        <span class="mitades__nombre" id="mitades-visual-1"></span>
+                        <span class="mitades__nombre" id="mitades-visual-2"></span>
+                    </div>
+                </div>
+
+                <div class="mitades__contenido revelar" style="--retraso:.1s">
+                    <div class="titulo-seccion titulo-seccion--izq">
+                        <span class="kicker">Dos sabores en una</span>
+                        <h2 class="titulo" id="mitades-titulo">Pedila <span class="destacado">mitad y mitad</span></h2>
+                        <p class="bajada">¿No te decidís? Elegí dos sabores y te los preparamos en una sola prepizza, dividida a la mitad.</p>
+                    </div>
+
+                    <div class="mitades__panel">
+                        <div class="mitades__selectores">
+                            <label class="mitades__campo">
+                                <span class="mitades__etiqueta"><span class="mitades__punto">1</span> Primera mitad</span>
+                                <select id="mitades-sabor-1"></select>
+                            </label>
+                            <span class="mitades__mas" aria-hidden="true">+</span>
+                            <label class="mitades__campo">
+                                <span class="mitades__etiqueta"><span class="mitades__punto">2</span> Segunda mitad</span>
+                                <select id="mitades-sabor-2"></select>
+                            </label>
+                        </div>
+                        <p class="mitades__resumen" id="mitades-resumen" aria-live="polite"></p>
+                        <a class="btn btn--rojo btn--bloque" id="mitades-pedir" href="https://wa.me/5493816120182" target="_blank" rel="noopener">
+                            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Pedir mitad y mitad
+                        </a>
+                        <p class="mitades__nota" id="mitades-nota"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span></span></p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -283,5 +333,6 @@
     <script src="js/main.js" defer></script>
     <script src="js/menu-datos.js" defer></script>
     <script src="js/menu.js" defer></script>
+    <script src="js/mitades.js" defer></script>
 </body>
 </html>

@@ -1605,6 +1605,184 @@ a.opcion { color: inherit; }
 .fila-ingredientes:hover .fila-ingredientes__ver { opacity: 1; }
 
 /* --------------------------------------------------------------------------
+   Pizza mitad y mitad (dos sabores en una prepizza)
+   -------------------------------------------------------------------------- */
+.mitades {
+    background:
+        radial-gradient(circle at 85% 15%, rgba(255, 255, 255, .08), transparent 40%),
+        radial-gradient(circle at 10% 90%, rgba(0, 0, 0, .18), transparent 45%),
+        var(--rojo);
+    color: var(--texto-claro);
+    overflow: hidden;
+    scroll-margin-top: 0;
+}
+.mitades[hidden] { display: none; }
+
+.mitades__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: clamp(36px, 6vw, 80px);
+    align-items: center;
+}
+
+.mitades__visual { text-align: center; }
+.mitades__pizza {
+    position: relative;
+    width: min(420px, 100%);
+    aspect-ratio: 1;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 10px solid var(--blanco);
+    background: var(--texto-oscuro);
+    box-shadow: 0 24px 50px rgba(0, 0, 0, .35);
+}
+.mitades__img {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: opacity .3s ease;
+}
+.mitades__img--izq { clip-path: inset(0 50% 0 0); }
+.mitades__img--der { clip-path: inset(0 0 0 50%); }
+/* Línea que divide las dos mitades */
+.mitades__pizza::after {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0; left: 50%;
+    width: 6px;
+    margin-left: -3px;
+    background: var(--blanco);
+    box-shadow: 0 0 12px rgba(0, 0, 0, .35);
+}
+.mitades__nombres {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    width: min(420px, 100%);
+    margin: 18px auto 0;
+}
+.mitades__nombre {
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .14);
+    border: 1px solid rgba(255, 255, 255, .35);
+    font-family: var(--fuente-titulos);
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.mitades__contenido .titulo-seccion { margin-bottom: 28px; }
+
+.mitades__panel {
+    padding: clamp(20px, 3vw, 28px);
+    border-radius: var(--radio-lg);
+    background: var(--blanco);
+    color: var(--texto-oscuro);
+    box-shadow: var(--sombra-lg);
+}
+.mitades__selectores {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: end;
+    gap: 12px;
+}
+.mitades__campo { display: grid; gap: 8px; }
+.mitades__etiqueta {
+    display: flex; align-items: center; gap: 8px;
+    font-family: var(--fuente-titulos);
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--rojo);
+}
+.mitades__punto {
+    width: 22px; height: 22px;
+    display: grid; place-items: center;
+    border-radius: 50%;
+    background: var(--rojo);
+    color: var(--texto-claro);
+    font-size: .72rem;
+    letter-spacing: 0;
+}
+.mitades__campo select {
+    width: 100%;
+    padding: 13px 40px 13px 16px;
+    border: 2px solid var(--borde);
+    border-radius: 12px;
+    background: var(--blanco) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23A00A0A' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 14px center / 12px;
+    -webkit-appearance: none;
+    appearance: none;
+    font: 600 .98rem var(--fuente-textos);
+    color: var(--texto-oscuro);
+    cursor: pointer;
+    transition: border-color var(--transicion), box-shadow var(--transicion);
+}
+.mitades__campo select:hover { border-color: var(--rojo); }
+.mitades__campo select:focus { outline: none; border-color: var(--rojo); box-shadow: 0 0 0 4px rgba(160, 10, 10, .12); }
+.mitades__mas {
+    padding-bottom: 12px;
+    font-family: var(--fuente-titulos);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--rojo);
+}
+.mitades__resumen {
+    margin: 18px 0 16px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    background: var(--gris-claro);
+    font-weight: 600;
+}
+.mitades__nota {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    margin: 12px 0 0;
+    font-size: .85rem;
+    color: #8a6f6a;
+}
+
+/* Aviso en el carrusel: "También mitad y mitad" */
+.vitrina__mitades {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 22px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px dashed var(--rojo);
+    background: #FFF5F4;
+    font-size: .9rem;
+    line-height: 1.4;
+    transition: background var(--transicion);
+}
+.vitrina__mitades:hover { background: #FFEAE7; }
+.vitrina__mitades strong { color: var(--rojo); }
+.vitrina__mitades > i { margin-left: auto; color: var(--rojo); }
+.vitrina__mitades[hidden] { display: none; }
+/* Ícono: círculo partido en dos mitades */
+.vitrina__mitades-icono {
+    width: 30px; height: 30px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: 2px solid var(--rojo);
+    background: linear-gradient(90deg, var(--rojo) 0 50%, var(--amarillo) 50% 100%);
+}
+
+@media (max-width: 1060px) {
+    .mitades__grid { grid-template-columns: 1fr; }
+    .mitades__pizza { width: min(340px, 100%); }
+    .mitades__nombres { width: min(340px, 100%); }
+}
+@media (max-width: 560px) {
+    .mitades__selectores { grid-template-columns: minmax(0, 1fr); }
+    .mitades__mas { padding: 0; text-align: center; line-height: 1; }
+}
+
+/* --------------------------------------------------------------------------
    CTA final del menú
    -------------------------------------------------------------------------- */
 .menu-cta { background: var(--rojo); color: var(--texto-claro); text-align: center; }

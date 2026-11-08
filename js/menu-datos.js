@@ -31,8 +31,10 @@
    Las categorías sin productos no se muestran en el menú.
    ========================================================================== */
 
+/* mitades: true → esa categoría se puede pedir "mitad y mitad" (dos sabores en una
+   misma prepizza). Para habilitarlo también en pizzetas, poné mitades: true ahí. */
 window.QM_CATEGORIAS = [
-    { id: 'pizzas',    nombre: 'Pizzas caseras', icono: 'fa-pizza-slice' },
+    { id: 'pizzas',    nombre: 'Pizzas caseras', icono: 'fa-pizza-slice', mitades: true },
     { id: 'pizzetas',  nombre: 'Pizzetas',       icono: 'fa-circle-dot' },
     { id: 'focaccias', nombre: 'Focaccias',      icono: 'fa-bread-slice' }
 ];

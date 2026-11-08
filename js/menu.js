@@ -25,6 +25,7 @@
         prev: $('vitrina-prev'),
         next: $('vitrina-next'),
         verFicha: $('vitrina-ver-ficha'),
+        mitades: $('vitrina-mitades'),
         vacio: $('carta-vacio'),
         lista: $('lista-ingredientes'),
         ficha: $('ficha')
@@ -186,6 +187,17 @@
         cambiarFoto(vitrina.img, el.foto, producto);
         pintar(vitrina, producto, lista);
         el.prev.hidden = el.next.hidden = lista.length < 2;
+        // "También mitad y mitad": solo en categorías que lo permiten
+        if (el.mitades) el.mitades.hidden = !categoriaDe(producto.categoria).mitades;
+    }
+
+    // Lleva a la sección "Mitad y mitad" con este sabor ya elegido como primera mitad
+    if (el.mitades) {
+        el.mitades.addEventListener('click', function (e) {
+            if (!QM.mitades) return;
+            e.preventDefault();
+            QM.mitades.elegir(estado.seleccionado);
+        });
     }
 
     /* ---------- Listado de ingredientes por variedad ---------- */
