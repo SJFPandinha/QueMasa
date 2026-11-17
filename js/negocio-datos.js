@@ -75,11 +75,10 @@ window.QM_NEGOCIO = {
     ],
 
     /* ---------- Opiniones de clientes ----------
-       SOLO opiniones reales (copiadas de Google, Instagram o WhatsApp, con permiso).
-       { nombre: 'Laura', texto: '…', estrellas: 5, origen: 'Google' }
-       Mientras la lista esté vacía, se muestra una invitación a dejar la opinión. */
+       SOLO opiniones reales (copiadas de Instagram o WhatsApp, con permiso).
+       { nombre: 'Laura', texto: '…', estrellas: 5, origen: 'Instagram' }
+       Siempre se muestra al final una invitación a dejar la opinión por WhatsApp o Instagram. */
     resenas: [],
-    enlaceResenas: 'https://www.google.com/maps/search/?api=1&query=%C2%A1Qu%C3%A9%20Masa!%20Alsina%20948%2C%20San%20Miguel%20de%20Tucum%C3%A1n',
 
     /* ---------- Instagram ----------
        Publicaciones destacadas: { imagen: 'assets/img/instagram/1.webp', enlace: 'https://www.instagram.com/p/…' }
