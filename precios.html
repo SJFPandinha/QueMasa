@@ -10,7 +10,10 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Precios por mayor y menor | ¡Qué Masa!">
     <meta property="og:description" content="Pizzas caseras, pizzetas y focaccias listas para hornear. Para tu casa o para tu negocio.">
-    <meta property="og:image" content="assets/img/hero-pizza.webp">
+    <meta property="og:url" content="https://quemasa.vercel.app/precios.html">
+    <meta property="og:image" content="https://quemasa.vercel.app/assets/img/hero-pizza.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://quemasa.vercel.app/precios.html">
     <meta property="og:locale" content="es_AR">
 
     <link rel="icon" type="image/png" href="assets/img/favicon.png">
@@ -19,8 +22,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 
+    <link rel="stylesheet" href="css/iconos.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="pagina-precios">
@@ -39,9 +42,10 @@
 
             <ul class="nav__menu" id="menu-principal">
                 <li><a class="nav__link" href="index.html#inicio">Inicio</a></li>
-                <li><a class="nav__link" href="index.html#productos">Nuestros productos</a></li>
+                <li><a class="nav__link" href="index.html#productos">Productos</a></li>
                 <li><a class="nav__link" href="menu.html">Menú</a></li>
-                <li><a class="nav__link" href="index.html#nosotros">Sobre nosotros</a></li>
+                <li><a class="nav__link is-active" href="precios.html" aria-current="page">Precios</a></li>
+                <li><a class="nav__link" href="index.html#nosotros">Nosotros</a></li>
                 <li><a class="nav__link" href="index.html#como-comprar">Cómo comprar</a></li>
                 <li><a class="nav__link" href="index.html#contacto">Contacto</a></li>
                 <li>
@@ -71,6 +75,7 @@
                 </nav>
                 <h1 class="pagina-hero__titulo" id="precios-titulo">Por mayor y menor</h1>
                 <p class="pagina-hero__texto">Ya sea para disfrutar en casa o para tu negocio, en ¡Qué Masa! tenemos una opción para vos.</p>
+                <p class="pagina-hero__estado"><span class="estado-local" data-estado-local>Jueves a domingo · 10 a 23 h</span></p>
             </div>
         </section>
 
@@ -123,9 +128,82 @@
                         <h3 class="precios__consulta-titulo" id="consulta-titulo">¿Querés hacer tu pedido?</h3>
                         <p class="precios__consulta-texto" id="consulta-texto">Escribinos por WhatsApp y te ayudamos a armarlo.</p>
                     </div>
-                    <a class="btn btn--blanco" id="consulta-boton" href="https://wa.me/5493816120182" target="_blank" rel="noopener">
-                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> <span id="consulta-boton-texto">Consultar por WhatsApp</span>
-                    </a>
+                    <div class="precios__consulta-acciones">
+                        <a class="btn btn--blanco" id="consulta-boton" href="https://wa.me/5493816120182" target="_blank" rel="noopener">
+                            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> <span id="consulta-boton-texto">Consultar por WhatsApp</span>
+                        </a>
+                        <a class="btn btn--contorno" id="consulta-armar" href="menu.html">
+                            <i class="fa-solid fa-basket-shopping" aria-hidden="true"></i> Armar mi pedido
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== REVENDEDORES ==================== -->
+        <section class="seccion revendedores" id="revendedores" aria-labelledby="revendedores-titulo">
+            <div class="contenedor">
+                <div class="titulo-seccion revelar">
+                    <span class="kicker">Para tu negocio</span>
+                    <h2 class="titulo" id="revendedores-titulo">Vendé <span class="destacado">¡Qué Masa!</span></h2>
+                    <p class="bajada">¿Tenés un kiosco, almacén, bar o rotisería? Sumá a tu negocio pizzas caseras listas para hornear.</p>
+                </div>
+
+                <ul class="ventajas">
+                    <li class="ventaja revelar">
+                        <span class="ventaja__icono"><i class="fa-solid fa-store" aria-hidden="true"></i></span>
+                        <h3>Para quién</h3>
+                        <p>Kioscos, almacenes, bares, rotiserías, cantinas y quienes organizan eventos o catering.</p>
+                    </li>
+                    <li class="ventaja revelar" style="--retraso:.1s">
+                        <span class="ventaja__icono"><i class="fa-solid fa-fire-burner" aria-hidden="true"></i></span>
+                        <h3>Listas para hornear</h3>
+                        <p>Tus clientes se llevan una pizza casera sin que tengas que amasar ni cocinar.</p>
+                    </li>
+                    <li class="ventaja revelar" style="--retraso:.2s">
+                        <span class="ventaja__icono"><i class="fa-solid fa-handshake" aria-hidden="true"></i></span>
+                        <h3>A tu medida</h3>
+                        <p>Precio por mayor, cantidades y entregas: lo coordinamos según lo que necesite tu negocio.</p>
+                    </li>
+                </ul>
+
+                <div class="formulario-caja revelar">
+                    <div class="formulario-caja__intro">
+                        <span class="formulario-caja__icono"><i class="fa-solid fa-clipboard-list" aria-hidden="true"></i></span>
+                        <h3>Pedí información</h3>
+                        <p>Completá estos datos y se arma un mensaje listo para mandarnos por WhatsApp. Te respondemos con precios y condiciones.</p>
+                    </div>
+                    <form class="formulario" id="form-revendedor" novalidate>
+                        <label class="campo"><span class="campo__etiqueta">Tu nombre</span>
+                            <input name="nombre" autocomplete="name" required maxlength="60">
+                            <span class="campo__error">Contanos tu nombre.</span></label>
+                        <label class="campo"><span class="campo__etiqueta">Nombre del negocio</span>
+                            <input name="negocio" autocomplete="organization" required maxlength="80">
+                            <span class="campo__error">Contanos cómo se llama tu negocio.</span></label>
+                        <label class="campo"><span class="campo__etiqueta">Rubro</span>
+                            <select name="rubro">
+                                <option>Kiosco / almacén</option>
+                                <option>Bar / restaurante</option>
+                                <option>Rotisería</option>
+                                <option>Eventos / catering</option>
+                                <option>Otro</option>
+                            </select></label>
+                        <label class="campo"><span class="campo__etiqueta">Zona o barrio</span>
+                            <input name="zona" maxlength="80" placeholder="Ej. Barrio Norte"></label>
+                        <label class="campo"><span class="campo__etiqueta">¿Cuántas por semana, más o menos?</span>
+                            <select name="cantidad">
+                                <option>Todavía no sé</option>
+                                <option>Hasta 10</option>
+                                <option>Entre 10 y 30</option>
+                                <option>Entre 30 y 60</option>
+                                <option>Más de 60</option>
+                            </select></label>
+                        <label class="campo campo--ancho"><span class="campo__etiqueta">Consulta <small>(opcional)</small></span>
+                            <textarea name="consulta" rows="3" maxlength="400" placeholder="Ej. qué variedades te interesan, días de entrega…"></textarea></label>
+                        <button class="btn btn--rojo campo--ancho" type="submit">
+                            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Enviar por WhatsApp
+                        </button>
+                    </form>
                 </div>
             </div>
         </section>
@@ -154,6 +232,7 @@
                     <li><a href="precios.html">Precios por mayor y menor</a></li>
                     <li><a href="index.html#nosotros">Sobre nosotros</a></li>
                     <li><a href="index.html#como-comprar">Cómo comprar</a></li>
+                    <li><a href="index.html#galeria">Galería</a></li>
                     <li><a href="index.html#contacto">Contacto</a></li>
                 </ul>
             </nav>
@@ -167,6 +246,10 @@
                         <a href="https://wa.me/5493816120182" target="_blank" rel="noopener" data-wa="¡Hola, Qué Masa! Tengo una consulta.">381 612-0182</a></li>
                     <li><i class="fa-brands fa-instagram" aria-hidden="true"></i>
                         <a href="https://www.instagram.com/quemasa.takeawayy/" target="_blank" rel="noopener">@quemasa.takeawayy</a></li>
+                    <li>
+                      <i class="fa-regular fa-clock" aria-hidden="true"></i>
+                      <span data-horarios>Jueves a domingo · 10 a 23 h</span>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -184,8 +267,10 @@
         <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
     </a>
 
-    <script src="js/main.js" defer></script>
+    <script src="js/negocio-datos.js" defer></script>
     <script src="js/menu-datos.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/pedido.js" defer></script>
     <script src="js/precios.js" defer></script>
 </body>
 </html>

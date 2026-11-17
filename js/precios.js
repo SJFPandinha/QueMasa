@@ -165,6 +165,25 @@
             });
             tabla.appendChild(tbody);
             grupo.appendChild(tabla);
+
+            // Precio según la cantidad (escalas de la categoría en js/menu-datos.js)
+            var escalas = (cat.escalas || []).filter(function (e) { return typeof e.precio === 'number'; })
+                .sort(function (a, b) { return a.desde - b.desde; });
+            if (escalas.length) {
+                var bloque = crear('div', 'escalas');
+                bloque.appendChild(crear('span', 'escalas__titulo', 'Precio por unidad según la cantidad'));
+                var ul = crear('ul', 'escalas__lista');
+                escalas.forEach(function (e, i) {
+                    var sig = escalas[i + 1];
+                    var rango = sig ? (sig.desde - 1 > e.desde ? e.desde + ' a ' + (sig.desde - 1) : String(e.desde)) : e.desde + ' o más';
+                    var li = crear('li', 'escalas__item');
+                    li.appendChild(crear('span', null, rango + ' u.'));
+                    li.appendChild(crear('strong', null, precio(e.precio, {})));
+                    ul.appendChild(li);
+                });
+                bloque.appendChild(ul);
+                grupo.appendChild(bloque);
+            }
             el.lista.appendChild(grupo);
         });
     }
@@ -186,4 +205,37 @@
         var n = location.hash.replace('#', '');
         if (MODOS[n]) { estado.modo = n; aplicarModo(); }
     });
+
+    /* ---------- Formulario para revendedores → mensaje de WhatsApp ---------- */
+    var form = $('form-revendedor');
+    if (form) {
+        form.addEventListener('input', function (e) {
+            var campo = e.target.closest('.campo');
+            if (campo) campo.classList.remove('is-error');
+        });
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            var f = form.elements;
+            var faltan = ['nombre', 'negocio'].filter(function (n) {
+                var vacio = !f[n].value.trim();
+                f[n].closest('.campo').classList.toggle('is-error', vacio);
+                return vacio;
+            });
+            if (faltan.length) { f[faltan[0]].focus(); return; }
+            var lineas = [
+                '¡Hola, Qué Masa! 👋 Quiero información para vender sus productos en mi negocio.',
+                '',
+                '👤 *Nombre:* ' + f.nombre.value.trim(),
+                '🏪 *Negocio:* ' + f.negocio.value.trim(),
+                '🏷️ *Rubro:* ' + f.rubro.value
+            ];
+            if (f.zona.value.trim()) lineas.push('📍 *Zona:* ' + f.zona.value.trim());
+            lineas.push('📦 *Cantidad por semana:* ' + f.cantidad.value);
+            if (f.consulta.value.trim()) lineas.push('📝 *Consulta:* ' + f.consulta.value.trim());
+            lineas.push('', '¡Gracias!');
+            var mensaje = lineas.join('\n');
+            var url = QM.enlaceWhatsApp ? QM.enlaceWhatsApp(mensaje) : 'https://wa.me/5493816120182?text=' + encodeURIComponent(mensaje);
+            window.open(url, '_blank', 'noopener');
+        });
+    }
 })();

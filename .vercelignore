@@ -4,3 +4,4 @@ fotos-nuevas/
 .vscode/
 README.md
 .env*
+.playwright-mcp/

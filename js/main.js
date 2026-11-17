@@ -8,7 +8,8 @@
 
     document.documentElement.classList.add('js');
 
-    var WHATSAPP_NUMERO = '5493816120182'; // 381 612-0182 con código de país (54) y prefijo móvil (9)
+    var NEGOCIO = window.QM_NEGOCIO || {};
+    var WHATSAPP_NUMERO = NEGOCIO.whatsapp || '5493816120182'; // 381 612-0182 con código de país (54) y prefijo móvil (9)
 
     /* ---------- Enlaces de WhatsApp con mensaje precargado ---------- */
     // Cada enlace define su mensaje en data-wa; el href base funciona aun sin JS.
@@ -339,17 +340,169 @@
         pintarHistorias: pintarHistorias
     };
 
-    /* ---------- Título de la pestaña alternando en loop ---------- */
-    // El <title> del HTML se mantiene para Google y para compartir el enlace;
-    // en la pestaña se alterna entre estos textos de forma infinita.
-    var TITULOS_PESTANA = ['¡Qué Masa!', '¡Hacé tu pedido!'];
-    var INTERVALO_TITULO = 500; // milisegundos entre cada cambio (medio segundo)
-    var indiceTitulo = 0;
-    document.title = TITULOS_PESTANA[0];
-    setInterval(function () {
-        indiceTitulo = (indiceTitulo + 1) % TITULOS_PESTANA.length;
-        document.title = TITULOS_PESTANA[indiceTitulo];
-    }, INTERVALO_TITULO);
+    /* ---------- Horarios y "Abierto ahora / Cerrado" ---------- */
+    // Los horarios están en js/negocio-datos.js. Siempre se calcula con la hora de Tucumán,
+    // aunque quien mire la página esté en otro huso horario.
+    var DIAS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+    var horario = (function () {
+        var franjasPorDia = NEGOCIO.horarios || {};
+        var zona = NEGOCIO.zonaHoraria || 'America/Argentina/Tucuman';
+        var lector;
+        try {
+            lector = new Intl.DateTimeFormat('en-US', {
+                timeZone: zona, year: 'numeric', month: '2-digit', day: '2-digit',
+                hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+            });
+        } catch (e) { lector = null; }
+
+        function minutos(hhmm) { var p = hhmm.split(':'); return +p[0] * 60 + +p[1]; }
+        function hhmm(min) { return ('0' + Math.floor(min / 60)).slice(-2) + ':' + ('0' + min % 60).slice(-2); }
+        // "10:00" → "10", "19:30" → "19:30"
+        function horaCorta(texto) { return texto.slice(-2) === '00' ? String(+texto.slice(0, 2)) : texto; }
+        function franjas(dia) { return franjasPorDia[dia] || []; }
+
+        // Fecha y hora actuales en Tucumán
+        function ahora() {
+            var d = new Date();
+            if (!lector) return { fecha: Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()), minutos: d.getHours() * 60 + d.getMinutes() };
+            var p = {};
+            lector.formatToParts(d).forEach(function (x) { p[x.type] = x.value; });
+            return { fecha: Date.UTC(+p.year, +p.month - 1, +p.day), minutos: +p.hour * 60 + +p.minute };
+        }
+
+        function estado() {
+            var a = ahora();
+            var hoy = new Date(a.fecha).getUTCDay();
+            var abierta = franjas(hoy).filter(function (f) { return a.minutos >= minutos(f[0]) && a.minutos < minutos(f[1]); })[0];
+            if (abierta) return { abierto: true, texto: 'Abierto ahora · hasta las ' + horaCorta(abierta[1]) + ' h' };
+            for (var i = 0; i < 8; i++) {
+                var dia = (hoy + i) % 7;
+                var proxima = franjas(dia).filter(function (f) { return i > 0 || minutos(f[0]) > a.minutos; })[0];
+                if (proxima) {
+                    var cuando = i === 0 ? 'hoy' : i === 1 ? 'mañana' : 'el ' + DIAS[dia];
+                    return { abierto: false, texto: 'Cerrado · abrimos ' + cuando + ' a las ' + horaCorta(proxima[0]) + ' h' };
+                }
+            }
+            return { abierto: false, texto: 'Cerrado' };
+        }
+
+        // Próximos días con su lista de horarios para pedir (cada 30 min)
+        function proximosDias(cantidad) {
+            var a = ahora();
+            var lista = [];
+            for (var i = 0; i < cantidad; i++) {
+                var fecha = new Date(a.fecha + i * 864e5);
+                var dia = fecha.getUTCDay();
+                var nombre = DIAS[dia].charAt(0).toUpperCase() + DIAS[dia].slice(1);
+                var dm = fecha.getUTCDate() + '/' + (fecha.getUTCMonth() + 1);
+                lista.push({
+                    clave: fecha.toISOString().slice(0, 10),
+                    etiqueta: (i === 0 ? 'Hoy, ' + DIAS[dia] : i === 1 ? 'Mañana, ' + DIAS[dia] : nombre) + ' ' + dm,
+                    horas: (function (dia, esHoy) {
+                        return function () {
+                            var horas = [];
+                            franjas(dia).forEach(function (f) {
+                                // Hoy: desde dentro de 30 minutos en adelante
+                                var desde = Math.max(minutos(f[0]), esHoy ? Math.ceil((a.minutos + 30) / 30) * 30 : 0);
+                                for (var m = desde; m <= minutos(f[1]) - 30; m += 30) horas.push(hhmm(m));
+                            });
+                            return horas;
+                        };
+                    })(dia, i === 0)
+                });
+            }
+            return lista;
+        }
+
+        // "Jueves a domingo · 10 a 23 h"
+        function resumen() {
+            var orden = [1, 2, 3, 4, 5, 6, 0];
+            var grupos = [];
+            orden.forEach(function (dia, i) {
+                var clave = franjas(dia).map(function (f) { return horaCorta(f[0]) + ' a ' + horaCorta(f[1]); }).join(' y ');
+                var ultimo = grupos[grupos.length - 1];
+                if (ultimo && ultimo.clave === clave && ultimo.hasta === i - 1) { ultimo.hasta = i; ultimo.diaHasta = dia; }
+                else grupos.push({ clave: clave, desde: i, hasta: i, diaDesde: dia, diaHasta: dia });
+            });
+            return grupos.filter(function (g) { return g.clave; }).map(function (g) {
+                var dias = g.desde === g.hasta ? DIAS[g.diaDesde] : DIAS[g.diaDesde] + ' a ' + DIAS[g.diaHasta];
+                return dias.charAt(0).toUpperCase() + dias.slice(1) + ' · ' + g.clave + ' h';
+            });
+        }
+
+        // Completa todos los [data-estado-local] y [data-horarios] de la página
+        function pintar() {
+            var e = estado();
+            document.querySelectorAll('[data-estado-local]').forEach(function (n) {
+                n.textContent = e.texto;
+                n.classList.toggle('is-abierto', e.abierto);
+                n.classList.toggle('is-cerrado', !e.abierto);
+            });
+            var lineas = resumen();
+            document.querySelectorAll('[data-horarios]').forEach(function (n) {
+                n.textContent = lineas.length ? lineas.join(' — ') : 'Consultanos por WhatsApp';
+            });
+        }
+
+        return { estado: estado, proximosDias: proximosDias, resumen: resumen, pintar: pintar };
+    })();
+    window.QM.horario = horario;
+    horario.pintar();
+    setInterval(horario.pintar, 60000);
+
+    /* ---------- Promociones (js/negocio-datos.js) ---------- */
+    // Se muestran en los contenedores [data-promos] mientras estén activas y dentro de sus fechas.
+    var hoyISO = new Date().toISOString().slice(0, 10);
+    var promosActivas = (NEGOCIO.promos || []).filter(function (p) {
+        return p.activa && (!p.desde || p.desde <= hoyISO) && (!p.hasta || p.hasta >= hoyISO);
+    });
+    document.querySelectorAll('[data-promos]').forEach(function (contenedor) {
+        contenedor.hidden = !promosActivas.length;
+        promosActivas.forEach(function (p) {
+            var tarjeta = document.createElement('div');
+            tarjeta.className = 'promo';
+            var etiqueta = document.createElement('span');
+            etiqueta.className = 'promo__etiqueta';
+            etiqueta.textContent = p.etiqueta || 'Promo';
+            var textos = document.createElement('div');
+            textos.className = 'promo__textos';
+            var titulo = document.createElement('strong');
+            titulo.className = 'promo__titulo';
+            titulo.textContent = p.titulo;
+            var texto = document.createElement('span');
+            texto.textContent = p.texto || '';
+            textos.appendChild(titulo);
+            textos.appendChild(texto);
+            var boton = document.createElement('a');
+            boton.className = 'btn btn--amarillo promo__boton';
+            boton.href = enlaceWhatsApp('¡Hola, Qué Masa! Quiero la promo "' + p.titulo + '".');
+            boton.target = '_blank';
+            boton.rel = 'noopener';
+            boton.innerHTML = '<i class="fa-brands fa-whatsapp" aria-hidden="true"></i> La quiero';
+            tarjeta.appendChild(etiqueta);
+            tarjeta.appendChild(textos);
+            tarjeta.appendChild(boton);
+            contenedor.appendChild(tarjeta);
+        });
+    });
+
+    /* ---------- Título de la pestaña ---------- */
+    // Mientras la pestaña está a la vista se ve el título normal (bueno para Google);
+    // si el cliente se va a otra pestaña, lo invita a volver.
+    var tituloOriginal = document.title;
+    document.addEventListener('visibilitychange', function () {
+        document.title = document.hidden ? '🍕 ¡Volvé, tu pizza te espera!' : tituloOriginal;
+    });
+
+    /* ---------- Estadísticas de visitas (Vercel Web Analytics, sin cookies) ---------- */
+    // Solo en el sitio publicado; se activa desde el panel de Vercel (Analytics → Enable).
+    if (/\.vercel\.app$/.test(location.hostname) || NEGOCIO.dominio === location.hostname) {
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+        var analytics = document.createElement('script');
+        analytics.defer = true;
+        analytics.src = '/_vercel/insights/script.js';
+        document.head.appendChild(analytics);
+    }
 
     /* ---------- Año actual en el footer ---------- */
     var anio = document.getElementById('anio');

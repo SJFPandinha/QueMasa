@@ -96,6 +96,18 @@
             : 'https://wa.me/5493816120182?text=' + encodeURIComponent(mensaje);
     }
 
+    // Agregar esta combinación al armador de pedido (js/pedido.js)
+    var agregar = $('mitades-agregar');
+    if (agregar && QM.pedido) {
+        agregar.hidden = false;
+        agregar.addEventListener('click', function () {
+            QM.pedido.agregar({ mitades: [el.select1.value, el.select2.value] });
+        });
+        el.pedir.classList.remove('btn', 'btn--rojo', 'btn--bloque');
+        el.pedir.classList.add('mitades__directo');
+        el.pedir.lastChild.textContent = ' o pedí solo esta por WhatsApp';
+    }
+
     el.select1.addEventListener('change', actualizar);
     el.select2.addEventListener('change', actualizar);
     actualizar();

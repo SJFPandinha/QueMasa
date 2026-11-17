@@ -27,17 +27,46 @@
                       Ponelo en false cuando la variedad tenga precio e ingredientes finales.
      fotoDeEjemplo  → true mientras la foto sea de referencia (muestra un aviso en la página)
      etiqueta       → texto destacado opcional (ej. "Nueva", "La más pedida") o null
+     atributos      → marcas con ícono: 'picante', 'vegetariana', 'mas-pedida', 'nueva'
+                      (se ven en el menú y también se pueden buscar: "vegetariana")
+     escalas        → (opcional) precio por unidad según la cantidad, ver PRECIOS POR CANTIDAD
 
    Las categorías sin productos no se muestran en el menú.
+   ========================================================================== */
+
+/* PRECIOS POR CANTIDAD (armador de pedido)
+   --------------------------------------------------------------------------
+   El total del pedido se calcula solo: cantidad × precio por unidad.
+   Para que el precio cambie según cuántas se piden, cargá "escalas" en la
+   categoría (vale para todas sus variedades) o en una variedad puntual:
+
+       escalas: [
+           { desde: 1,  precio: 6000 },   // de 1 a 2 unidades: $6.000 c/u
+           { desde: 3,  precio: 5500 },   // de 3 a 5 unidades: $5.500 c/u
+           { desde: 6,  precio: 5000 }    // 6 o más: $5.000 c/u
+       ]
+
+   La cantidad que cuenta es el total de esa categoría en el pedido
+   (ej. 2 muzzas + 1 mitad y mitad = 3 pizzas). Mitad y mitad se cobra
+   al precio de la mitad más cara.
+   Sin escalas, se usa precioMenor. Si no hay precio, el total queda "a confirmar".
    ========================================================================== */
 
 /* mitades: true → esa categoría se puede pedir "mitad y mitad" (dos sabores en una
    misma prepizza). Para habilitarlo también en pizzetas, poné mitades: true ahí. */
 window.QM_CATEGORIAS = [
-    { id: 'pizzas',    nombre: 'Pizzas caseras', icono: 'fa-pizza-slice', mitades: true },
-    { id: 'pizzetas',  nombre: 'Pizzetas',       icono: 'fa-circle-dot' },
-    { id: 'focaccias', nombre: 'Focaccias',      icono: 'fa-bread-slice' }
+    { id: 'pizzas',    nombre: 'Pizzas caseras', icono: 'fa-pizza-slice', mitades: true, escalas: [] },
+    { id: 'pizzetas',  nombre: 'Pizzetas',       icono: 'fa-circle-dot', escalas: [] },
+    { id: 'focaccias', nombre: 'Focaccias',      icono: 'fa-bread-slice', escalas: [] }
 ];
+
+/* Marcas con ícono que se pueden poner en "atributos" de cada variedad */
+window.QM_ATRIBUTOS = {
+    'picante':     { nombre: 'Picante',      icono: 'fa-pepper-hot' },
+    'vegetariana': { nombre: 'Vegetariana',  icono: 'fa-leaf' },
+    'mas-pedida':  { nombre: 'La más pedida', icono: 'fa-star' },
+    'nueva':       { nombre: 'Nueva',        icono: 'fa-certificate' }
+};
 
 window.QM_MENU = [
     /* ---------- Pizzas caseras ---------- */
@@ -52,7 +81,8 @@ window.QM_MENU = [
         precioMayor: null,
         aDefinir: true,
         fotoDeEjemplo: true,
-        etiqueta: null
+        etiqueta: null,
+        atributos: ['vegetariana']
     },
     {
         id: 'pizza-doble-muzza',
@@ -65,7 +95,8 @@ window.QM_MENU = [
         precioMayor: null,
         aDefinir: true,
         fotoDeEjemplo: true,
-        etiqueta: null
+        etiqueta: null,
+        atributos: ['vegetariana']
     },
     {
         id: 'pizza-morron-huevo',
@@ -78,7 +109,8 @@ window.QM_MENU = [
         precioMayor: null,
         aDefinir: true,
         fotoDeEjemplo: true,
-        etiqueta: null
+        etiqueta: null,
+        atributos: ['vegetariana']
     },
     {
         id: 'pizza-jamon-aceitunas',
@@ -91,7 +123,8 @@ window.QM_MENU = [
         precioMayor: null,
         aDefinir: true,
         fotoDeEjemplo: true,
-        etiqueta: null
+        etiqueta: null,
+        atributos: []
     },
     {
         id: 'pizza-salame-aceitunas',
@@ -104,7 +137,8 @@ window.QM_MENU = [
         precioMayor: null,
         aDefinir: true,
         fotoDeEjemplo: true,
-        etiqueta: null
+        etiqueta: null,
+        atributos: []
     },
     {
         id: 'pizza-tomate',
@@ -117,7 +151,8 @@ window.QM_MENU = [
         precioMayor: null,
         aDefinir: true,
         fotoDeEjemplo: true,
-        etiqueta: null
+        etiqueta: null,
+        atributos: ['vegetariana']
     },
     {
         id: 'pizza-jamon-morron',
@@ -130,7 +165,8 @@ window.QM_MENU = [
         precioMayor: null,
         aDefinir: true,
         fotoDeEjemplo: true,
-        etiqueta: null
+        etiqueta: null,
+        atributos: []
     },
     {
         id: 'pizza-picante',
@@ -143,7 +179,8 @@ window.QM_MENU = [
         precioMayor: null,
         aDefinir: true,
         fotoDeEjemplo: true,
-        etiqueta: null
+        etiqueta: null,
+        atributos: ['picante']
     },
 
     /* ---------- Pizzetas (mismas variedades que las pizzas) ---------- */
@@ -158,7 +195,8 @@ window.QM_MENU = [
         precioMayor: null,
         aDefinir: true,
         fotoDeEjemplo: true,
-        etiqueta: null
+        etiqueta: null,
+        atributos: ['vegetariana']
     },
     {
         id: 'pizzeta-doble-muzza',
@@ -171,7 +209,8 @@ window.QM_MENU = [
         precioMayor: null,
         aDefinir: true,
         fotoDeEjemplo: true,
-        etiqueta: null
+        etiqueta: null,
+        atributos: ['vegetariana']
     },
     {
         id: 'pizzeta-morron-huevo',
@@ -184,7 +223,8 @@ window.QM_MENU = [
         precioMayor: null,
         aDefinir: true,
         fotoDeEjemplo: true,
-        etiqueta: null
+        etiqueta: null,
+        atributos: ['vegetariana']
     },
     {
         id: 'pizzeta-jamon-aceitunas',
@@ -197,7 +237,8 @@ window.QM_MENU = [
         precioMayor: null,
         aDefinir: true,
         fotoDeEjemplo: true,
-        etiqueta: null
+        etiqueta: null,
+        atributos: []
     },
     {
         id: 'pizzeta-salame-aceitunas',
@@ -210,7 +251,8 @@ window.QM_MENU = [
         precioMayor: null,
         aDefinir: true,
         fotoDeEjemplo: true,
-        etiqueta: null
+        etiqueta: null,
+        atributos: []
     },
     {
         id: 'pizzeta-tomate',
@@ -223,7 +265,8 @@ window.QM_MENU = [
         precioMayor: null,
         aDefinir: true,
         fotoDeEjemplo: true,
-        etiqueta: null
+        etiqueta: null,
+        atributos: ['vegetariana']
     },
     {
         id: 'pizzeta-jamon-morron',
@@ -236,7 +279,8 @@ window.QM_MENU = [
         precioMayor: null,
         aDefinir: true,
         fotoDeEjemplo: true,
-        etiqueta: null
+        etiqueta: null,
+        atributos: []
     },
     {
         id: 'pizzeta-picante',
@@ -249,7 +293,8 @@ window.QM_MENU = [
         precioMayor: null,
         aDefinir: true,
         fotoDeEjemplo: true,
-        etiqueta: null
+        etiqueta: null,
+        atributos: ['picante']
     },
 
     /* ---------- Focaccias ---------- */
@@ -264,7 +309,8 @@ window.QM_MENU = [
         precioMayor: null,
         aDefinir: true,
         fotoDeEjemplo: true,
-        etiqueta: null
+        etiqueta: null,
+        atributos: ['vegetariana']
     },
     {
         id: 'focaccia-tomate-cherry-aceituna',
@@ -277,7 +323,8 @@ window.QM_MENU = [
         precioMayor: null,
         aDefinir: true,
         fotoDeEjemplo: true,
-        etiqueta: null
+        etiqueta: null,
+        atributos: ['vegetariana']
     },
     {
         id: 'focaccia-cebolla-aceituna',
@@ -290,6 +337,7 @@ window.QM_MENU = [
         precioMayor: null,
         aDefinir: true,
         fotoDeEjemplo: true,
-        etiqueta: null
+        etiqueta: null,
+        atributos: ['vegetariana']
     }
 ];

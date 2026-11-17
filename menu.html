@@ -10,7 +10,10 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Menú | ¡Qué Masa!">
     <meta property="og:description" content="Pizzas caseras, focaccias y pizzetas listas para hornear. Mirá los ingredientes de cada una.">
-    <meta property="og:image" content="assets/img/hero-pizza.webp">
+    <meta property="og:url" content="https://quemasa.vercel.app/menu.html">
+    <meta property="og:image" content="https://quemasa.vercel.app/assets/img/hero-pizza.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://quemasa.vercel.app/menu.html">
     <meta property="og:locale" content="es_AR">
 
     <link rel="icon" type="image/png" href="assets/img/favicon.png">
@@ -19,8 +22,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 
+    <link rel="stylesheet" href="css/iconos.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="pagina-menu">
@@ -39,9 +42,10 @@
 
             <ul class="nav__menu" id="menu-principal">
                 <li><a class="nav__link" href="index.html#inicio">Inicio</a></li>
-                <li><a class="nav__link" href="index.html#productos">Nuestros productos</a></li>
+                <li><a class="nav__link" href="index.html#productos">Productos</a></li>
                 <li><a class="nav__link is-active" href="menu.html" aria-current="page">Menú</a></li>
-                <li><a class="nav__link" href="index.html#nosotros">Sobre nosotros</a></li>
+                <li><a class="nav__link" href="precios.html">Precios</a></li>
+                <li><a class="nav__link" href="index.html#nosotros">Nosotros</a></li>
                 <li><a class="nav__link" href="index.html#como-comprar">Cómo comprar</a></li>
                 <li><a class="nav__link" href="index.html#contacto">Contacto</a></li>
                 <li>
@@ -70,7 +74,8 @@
                     </ol>
                 </nav>
                 <h1 class="pagina-hero__titulo" id="menu-titulo">Nuestro menú</h1>
-                <p class="pagina-hero__texto">Pizzas, pizzetas y focaccias caseras, listas para hornear. Y si no te decidís, pedila <a href="#mitad-y-mitad">mitad y mitad</a>.</p>
+                <p class="pagina-hero__texto">Pizzas, pizzetas y focaccias caseras, listas para hornear. Sumá lo que quieras a tu pedido y mandalo por WhatsApp. Y si no te decidís, pedila <a href="#mitad-y-mitad">mitad y mitad</a>.</p>
+                <p class="pagina-hero__estado"><span class="estado-local" data-estado-local>Jueves a domingo · 10 a 23 h</span></p>
             </div>
         </section>
 
@@ -81,6 +86,8 @@
                     <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
                     <span><strong>Fotos de referencia:</strong> las imágenes son ilustrativas y pronto se reemplazarán por fotos de nuestras pizzas. Los precios están a definir.</span>
                 </p>
+
+                <div class="promos promos--carta" data-promos hidden></div>
 
                 <div class="titulo-seccion revelar">
                     <span class="kicker">La carta</span>
@@ -113,11 +120,13 @@
                     <div class="vitrina__info">
                         <span class="vitrina__categoria" id="vitrina-categoria"></span>
                         <h3 class="vitrina__nombre" id="vitrina-nombre"></h3>
+                        <div class="vitrina__atributos" id="vitrina-atributos" hidden></div>
                         <p class="vitrina__descripcion" id="vitrina-descripcion"></p>
 
                         <h4 class="vitrina__subtitulo"><i class="fa-solid fa-list-check" aria-hidden="true"></i> Ingredientes</h4>
                         <ul class="ingredientes" id="vitrina-ingredientes"></ul>
                         <p class="vitrina__nota" id="vitrina-nota" hidden><i class="fa-solid fa-hourglass-half" aria-hidden="true"></i> Lista completa de ingredientes a confirmar.</p>
+                        <a class="vitrina__horneado" id="vitrina-horneado" href="index.html#horneado" hidden><i class="fa-solid fa-fire-burner" aria-hidden="true"></i> <span></span> · <u>Ver guía</u></a>
 
                         <a class="vitrina__mitades" id="vitrina-mitades" href="#mitad-y-mitad" hidden>
                             <span class="vitrina__mitades-icono" aria-hidden="true"></span>
@@ -127,10 +136,13 @@
 
                         <div class="vitrina__pie">
                             <p class="vitrina__precio" id="vitrina-precio"></p>
-                            <a class="btn btn--whatsapp" id="vitrina-pedir" href="https://wa.me/5493816120182" target="_blank" rel="noopener">
-                                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Pedir esta variedad
-                            </a>
+                            <button class="btn btn--rojo" type="button" id="vitrina-agregar">
+                                <i class="fa-solid fa-basket-shopping" aria-hidden="true"></i> Agregar al pedido
+                            </button>
                         </div>
+                        <a class="vitrina__directo" id="vitrina-pedir" href="https://wa.me/5493816120182" target="_blank" rel="noopener">
+                            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> o pedí solo esta por WhatsApp
+                        </a>
                         <div class="vitrina__extra">
                             <p class="vitrina__contador" id="vitrina-contador"></p>
                             <button class="vitrina__ver-ficha" type="button" id="vitrina-ver-ficha">
@@ -186,6 +198,9 @@
                             </label>
                         </div>
                         <p class="mitades__resumen" id="mitades-resumen" aria-live="polite"></p>
+                        <button class="btn btn--rojo btn--bloque" type="button" id="mitades-agregar" hidden>
+                            <i class="fa-solid fa-basket-shopping" aria-hidden="true"></i> Agregar mitad y mitad al pedido
+                        </button>
                         <a class="btn btn--rojo btn--bloque" id="mitades-pedir" href="https://wa.me/5493816120182" target="_blank" rel="noopener">
                             <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Pedir mitad y mitad
                         </a>
@@ -214,12 +229,15 @@
                 <div class="titulo-seccion">
                     <span class="kicker">¿Ya elegiste?</span>
                     <h2 class="titulo" id="cta-titulo">Vos horneás, <span class="destacado">nosotros hacemos el resto</span></h2>
-                    <p class="bajada">Escribinos por WhatsApp con tu pedido y te respondemos a la brevedad.</p>
+                    <p class="bajada">Revisá tu pedido, completá tus datos y nos llega todo ordenado por WhatsApp.</p>
                 </div>
                 <div class="menu-cta__acciones">
-                    <a class="btn btn--blanco" href="https://wa.me/5493816120182" target="_blank" rel="noopener"
-                       data-wa="¡Hola, Qué Masa! Vi el menú y quiero hacer un pedido.">
-                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Hacer un pedido
+                    <a class="btn btn--blanco" href="#pedido" data-abrir-pedido>
+                        <i class="fa-solid fa-basket-shopping" aria-hidden="true"></i> Ver mi pedido
+                    </a>
+                    <a class="btn btn--contorno" href="https://wa.me/5493816120182" target="_blank" rel="noopener"
+                       data-wa="¡Hola, Qué Masa! Vi el menú y tengo una consulta.">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Consultar
                     </a>
                     <a class="btn btn--contorno" href="precios.html">Precios por mayor y menor</a>
                 </div>
@@ -264,6 +282,10 @@
                         <a href="https://wa.me/5493816120182" target="_blank" rel="noopener" data-wa="¡Hola, Qué Masa! Tengo una consulta.">381 612-0182</a></li>
                     <li><i class="fa-brands fa-instagram" aria-hidden="true"></i>
                         <a href="https://www.instagram.com/quemasa.takeawayy/" target="_blank" rel="noopener">@quemasa.takeawayy</a></li>
+                    <li>
+                      <i class="fa-regular fa-clock" aria-hidden="true"></i>
+                      <span data-horarios>Jueves a domingo · 10 a 23 h</span>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -299,18 +321,23 @@
             <div class="ficha__cuerpo">
                 <span class="vitrina__categoria" id="ficha-categoria"></span>
                 <h2 class="vitrina__nombre" id="ficha-nombre"></h2>
+                <div class="vitrina__atributos" id="ficha-atributos" hidden></div>
                 <p class="vitrina__descripcion" id="ficha-descripcion"></p>
 
                 <h3 class="vitrina__subtitulo"><i class="fa-solid fa-list-check" aria-hidden="true"></i> Ingredientes</h3>
                 <ul class="ingredientes" id="ficha-ingredientes"></ul>
                 <p class="vitrina__nota" id="ficha-nota" hidden><i class="fa-solid fa-hourglass-half" aria-hidden="true"></i> Lista completa de ingredientes a confirmar.</p>
+                <a class="vitrina__horneado" id="ficha-horneado" href="index.html#horneado" hidden><i class="fa-solid fa-fire-burner" aria-hidden="true"></i> <span></span> · <u>Ver guía</u></a>
 
                 <div class="vitrina__pie">
                     <p class="vitrina__precio" id="ficha-precio"></p>
-                    <a class="btn btn--whatsapp" id="ficha-pedir" href="https://wa.me/5493816120182" target="_blank" rel="noopener">
-                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Pedir esta variedad
-                    </a>
+                    <button class="btn btn--rojo" type="button" id="ficha-agregar">
+                        <i class="fa-solid fa-basket-shopping" aria-hidden="true"></i> Agregar al pedido
+                    </button>
                 </div>
+                <a class="vitrina__directo" id="ficha-pedir" href="https://wa.me/5493816120182" target="_blank" rel="noopener">
+                    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> o pedí solo esta por WhatsApp
+                </a>
                 <p class="ficha__ayuda">
                     <span id="ficha-contador"></span> ·
                     Tocá los costados de la foto para pasar de variedad · Deslizá hacia abajo para cerrar
@@ -330,8 +357,10 @@
         <button class="lightbox__btn lightbox__next" type="button" aria-label="Imagen siguiente"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
     </div>
 
-    <script src="js/main.js" defer></script>
+    <script src="js/negocio-datos.js" defer></script>
     <script src="js/menu-datos.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/pedido.js" defer></script>
     <script src="js/menu.js" defer></script>
     <script src="js/mitades.js" defer></script>
 </body>

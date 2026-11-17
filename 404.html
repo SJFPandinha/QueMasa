@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Página no encontrada | ¡Qué Masa!</title>
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#6A0404">
+    <link rel="icon" type="image/png" href="/assets/img/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/iconos.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Esta página se muestra cuando alguien entra a una dirección que no existe.
+         Las rutas empiezan con "/" para que funcionen desde cualquier dirección. -->
+    <main class="error-404">
+        <div class="contenedor">
+            <!-- Cada pieza cae de arriba con un rebote y después queda ondulando (--i = orden) -->
+            <p class="error-404__numero" aria-hidden="true">
+                <span class="error-404__pieza" style="--i:0">4</span>
+                <span class="error-404__pieza error-404__pieza--pizza" style="--i:1"><i class="fa-solid fa-pizza-slice"></i></span>
+                <span class="error-404__pieza" style="--i:2">4</span>
+            </p>
+            <!-- El logo aparece cuando las piezas terminan de caer -->
+            <a class="error-404__logo" href="/" aria-label="¡Qué Masa! — Ir al inicio">
+                <img src="/assets/img/logo-quemasa-blanco.png" alt="¡Qué Masa! Pizza Takeaway" width="484" height="403">
+            </a>
+            <h1 class="error-404__titulo">Esta porción no existe</h1>
+            <p class="error-404__bajada">La página que buscás no está o cambió de lugar. Pero tranqui: las pizzas siguen acá.</p>
+            <div class="error-404__acciones">
+                <a class="btn btn--blanco" href="/"><i class="fa-solid fa-house" aria-hidden="true"></i> Ir al inicio</a>
+                <a class="btn btn--contorno" href="/menu.html"><i class="fa-solid fa-book-open" aria-hidden="true"></i> Ver el menú</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

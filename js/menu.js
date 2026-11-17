@@ -11,6 +11,8 @@
 
     var CATEGORIAS = window.QM_CATEGORIAS || [];
     var MENU = window.QM_MENU || [];
+    var ATRIBUTOS = window.QM_ATRIBUTOS || {};
+    var HORNEADO = (window.QM_NEGOCIO || {}).horneado || {};
     var QM = window.QM || { enlaceWhatsApp: function () { return 'https://wa.me/5493816120182'; }, revelar: function () {}, lightbox: { abrir: function () {} }, textoPrecio: String };
 
     var $ = function (id) { return document.getElementById(id); };
@@ -44,6 +46,9 @@
             nota: $(prefijo + '-nota'),
             precio: $(prefijo + '-precio'),
             pedir: $(prefijo + '-pedir'),
+            agregar: $(prefijo + '-agregar'),
+            atributos: $(prefijo + '-atributos'),
+            horneado: $(prefijo + '-horneado'),
             contador: $(prefijo + '-contador'),
             progreso: $(prefijo + '-progreso')
         };
@@ -72,9 +77,30 @@
         for (var i = 0; i < CATEGORIAS.length; i++) if (CATEGORIAS[i].id === id) return CATEGORIAS[i];
         return { id: id, nombre: id, icono: 'fa-pizza-slice' };
     }
+    // Con precios por cantidad (escalas) se muestra el más bajo: "Desde $ 5.000"
+    function precioBase(producto) {
+        var escalas = producto.escalas && producto.escalas.length ? producto.escalas : (categoriaDe(producto.categoria).escalas || []);
+        var precios = escalas.map(function (e) { return e.precio; }).filter(function (v) { return typeof v === 'number'; });
+        if (precios.length) return { valor: Math.min.apply(null, precios), desde: precios.length > 1 };
+        return typeof producto.precioMenor === 'number' ? { valor: producto.precioMenor, desde: false } : null;
+    }
     function textoPrecio(producto) {
-        if (typeof producto.precioMenor === 'number') return QM.textoPrecio(producto.precioMenor);
+        var base = precioBase(producto);
+        if (base) return (base.desde ? 'Desde ' : '') + QM.textoPrecio(base.valor);
         return producto.aDefinir ? 'Precio a definir' : 'Consultar precio';
+    }
+    function atributosDe(producto) {
+        return (producto.atributos || []).map(function (id) { return ATRIBUTOS[id]; }).filter(Boolean);
+    }
+    function marcas(producto, clase) {
+        var caja = crear('span', clase);
+        atributosDe(producto).forEach(function (a) {
+            var m = crear('span', 'marca-atributo');
+            m.appendChild(icono('fa-solid ' + a.icono));
+            m.appendChild(document.createTextNode(' ' + a.nombre));
+            caja.appendChild(m);
+        });
+        return caja;
     }
     function coincide(producto) {
         if (estado.categoria !== 'todas' && producto.categoria !== estado.categoria) return false;
@@ -82,6 +108,7 @@
         var q = normalizar(estado.busqueda);
         return normalizar(producto.nombre).indexOf(q) > -1 ||
             normalizar(producto.descripcion || '').indexOf(q) > -1 ||
+            atributosDe(producto).some(function (a) { return normalizar(a.nombre).indexOf(q) > -1; }) ||
             producto.ingredientes.some(function (ing) { return normalizar(ing).indexOf(q) > -1; });
     }
     function filtrados() { return MENU.filter(coincide); }
@@ -142,6 +169,16 @@
         d.categoria.appendChild(icono('fa-solid ' + cat.icono));
         d.categoria.appendChild(document.createTextNode(' ' + cat.nombre));
         d.nombre.textContent = producto.nombre;
+        if (d.atributos) {
+            d.atributos.textContent = '';
+            d.atributos.appendChild(marcas(producto, 'marcas'));
+            d.atributos.hidden = !atributosDe(producto).length;
+        }
+        if (d.horneado) {
+            var h = HORNEADO[producto.categoria];
+            d.horneado.hidden = !h;
+            if (h) d.horneado.querySelector('span').textContent = 'Al horno: ' + h.tiempo + ' a ' + h.temperatura;
+        }
         d.descripcion.textContent = producto.descripcion || '';
         d.descripcion.hidden = !producto.descripcion;
 
@@ -162,7 +199,7 @@
 
         d.precio.textContent = textoPrecio(producto);
         d.precio.classList.toggle('is-consultar', typeof producto.precioMenor !== 'number');
-        d.pedir.href = QM.enlaceWhatsApp('¡Hola, Qué Masa! Quiero pedir: ' + producto.nombre + ' (' + cat.nombre + ').');
+        if (d.pedir) d.pedir.href = QM.enlaceWhatsApp('¡Hola, Qué Masa! Quiero pedir: ' + producto.nombre + ' (' + cat.nombre + ').');
 
         var pos = lista.indexOf(producto);
         d.contador.textContent = (pos + 1) + ' de ' + lista.length;
@@ -234,7 +271,14 @@
 
                 var cuerpo = crear('span', 'fila-ingredientes__cuerpo');
                 var cabecera = crear('span', 'fila-ingredientes__cabecera');
-                cabecera.appendChild(crear('span', 'fila-ingredientes__nombre', producto.nombre));
+                var nombre = crear('span', 'fila-ingredientes__nombre', producto.nombre);
+                atributosDe(producto).forEach(function (a) {
+                    var m = icono('fa-solid ' + a.icono + ' fila-ingredientes__marca');
+                    m.title = a.nombre;
+                    nombre.appendChild(document.createTextNode(' '));
+                    nombre.appendChild(m);
+                });
+                cabecera.appendChild(nombre);
                 cabecera.appendChild(crear('span', 'fila-ingredientes__precio', textoPrecio(producto)));
                 cuerpo.appendChild(cabecera);
 
@@ -253,6 +297,16 @@
 
                 b.addEventListener('click', function () { seleccionar(producto.id, true); });
                 li.appendChild(b);
+
+                // Agregar al pedido sin salir del listado
+                if (QM.pedido) {
+                    var mas = crear('button', 'fila-ingredientes__agregar');
+                    mas.type = 'button';
+                    mas.setAttribute('aria-label', 'Agregar ' + producto.nombre + ' (' + cat.nombre + ') al pedido');
+                    mas.appendChild(icono('fa-solid fa-plus'));
+                    mas.addEventListener('click', function () { QM.pedido.agregar({ producto: producto.id }); });
+                    li.appendChild(mas);
+                }
                 ul.appendChild(li);
             });
             grupo.appendChild(ul);
@@ -371,6 +425,13 @@
     });
 
     if (el.verFicha) el.verFicha.addEventListener('click', abrirFicha);
+
+    /* ---------- Agregar al pedido (carrusel y ficha) ---------- */
+    [vitrina.agregar, ficha && ficha.agregar].forEach(function (boton) {
+        if (!boton) return;
+        if (!QM.pedido) { boton.hidden = true; return; }
+        boton.addEventListener('click', function () { QM.pedido.agregar({ producto: estado.seleccionado }); });
+    });
 
     /* ---------- Ficha deslizable (tipo historias de Instagram) ---------- */
     // La lógica de abrir, cerrar y los gestos está en main.js (QM.crearHoja)
